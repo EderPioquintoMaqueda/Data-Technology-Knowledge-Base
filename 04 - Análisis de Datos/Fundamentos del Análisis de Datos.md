@@ -1,57 +1,74 @@
-# 🔍 Fundamentos del Análisis de Datos: El Framework de Valor
+# 🔍 Fundamentos del Análisis de Datos: Gobernanza, Arquitectura y Valor | Data Analysis Fundamentals: Governance, Architecture & Value
 
-El análisis de datos profesional no consiste en ejecutar comandos de Python, sino en aplicar un **sistema de pensamiento crítico** para convertir datos brutos en decisiones estratégicas. Para un perfil senior, el análisis es un proceso de reducción de incertidumbre.
+**ES:** Un analista junior limpia datos; un analista senior diseña la **estrategia de calidad y el flujo de la información**. El análisis profesional no es un acto aislado, es una tubería (*pipeline*) donde la confianza en el dato es el activo más valioso.
 
-## 1. El Framework de Análisis Profesional (The Value Chain)
-
-Un análisis mediocre comienza con el código; un análisis profesional comienza con la **pregunta de negocio**.
-
-### El Flujo de Trabajo Estructurado:
-1. **Definición del Problema (Business Question)**: Traducir un problema de negocio a un problema de datos. 
-   - *Mal*: "Quiero ver las ventas".
-   - *Pro*: "Necesito identificar el segmento de clientes con la mayor tasa de deserción (*Churn*) en el último trimestre para diseñar una campaña de retención".
-2. **Extracción y Curaduría (Data Sourcing)**: No solo extraer, sino validar la procedencia.
-   - ¿El dato es confiable? ¿Tiene sesgos? ¿Cuál es la granularidad (diaria, mensual)?
-3. **Limpieza y Transformación (Data Wrangling)**: Aplicar el rigor técnico visto en [[02 - Programación]].
-4. **Análisis Exploratorio (EDA)**: Usar estadística para validar hipótesis.
-5. **Síntesis y Comunicación (Insight Delivery)**: Traducir el "p-valor" o la "correlación" en una recomendación accionable para la gerencia.
+**EN:** A junior analyst cleans data; a senior analyst designs the **quality strategy and information flow**. Professional analysis is not an isolated act; it is a pipeline where data trust is the most valuable asset.
 
 ---
 
-## 2. Gestión de Calidad de Datos (Data Quality Engineering)
+## 1. The Medallion Architecture | Arquitectura de Medallones (Bronze, Silver, Gold)
 
-El principio fundamental es **"Garbage In, Garbage Out" (GIGO)**. Si los datos están sucios, la IA más avanzada dará resultados erróneos.
+Para evitar el caos en la gestión de datos, la industria utiliza el estándar de la **Arquitectura Medallón**. Esto asegura que el dato sea trazable y auditable.
 
-### Estrategias Profesionales de Limpieza:
+### 🥉 Bronze Layer (Raw Data)
+- **Estado:** Datos brutos, tal como vienen de la fuente (APIs, CSVs, DBs).
+- **Regla:** **Nunca se modifica**. Se guarda el historial completo. Si cometemos un error en el análisis, podemos volver aquí y procesar todo de nuevo.
 
-#### A. Tratamiento de Valores Faltantes (Imputación)
-No siempre se deben eliminar los nulos. La elección del método depende de la distribución:
-- **Media ($\mu$)**: Solo si la distribución es Normal y no hay outliers.
-- **Mediana**: El estándar profesional. Es robusta frente a valores extremos.
-- **Moda**: Para variables categóricas.
-- **Imputación Predictiva (KNN / MICE)**: Usar otros datos para predecir el valor faltante. Es el nivel más avanzado.
+### 🥈 Silver Layer (Cleansed & Conformed)
+- **Estado:** Datos limpios, tipados y validados.
+- **Proceso:** Se eliminan duplicados, se estandarizan formatos (ej. fechas a ISO 8601) y se resuelven nulos.
+- **Objetivo:** Es la "fuente de verdad" para los analistas.
 
-#### B. Control de Outliers (Valores Atípicos)
-Un outlier puede ser un error de sensor o la señal de un fraude bancario.
-- **Método IQR (Rango Intercuartílico)**: Ideal para distribuciones no normales.
-  - $\text{Límite Superior} = Q3 + 1.5 \times (Q3 - Q1)$.
-- **Z-Score**: Ideal para distribuciones Normales.
-  - $\text{Outlier si } |Z| > 3$.
-
-#### C. Normalización y Estandarización
-Fundamental antes de alimentar cualquier modelo de ML (conectando con [[01 - Matemáticas|Álgebra Lineal]]).
-- **Min-Max Scaling**: Mapea al rango $[0, 1]$.
-- **StandardScaler**: Centra la media en 0 y la desviación en 1.
+### 🥇 Gold Layer (Business Ready / Aggregated)
+- **Estado:** Datos agregados y optimizados para el negocio.
+- **Proceso:** Cálculo de KPIs, joins finales y tablas resumen.
+- **Objetivo:** Alimentar los dashboards de BI y los modelos de ML.
 
 ---
 
-## 3. Matriz de Decisión de Limpieza
+## 2. Data Lineage & Governance | Linaje y Gobernanza de Datos
 
-| Tipo de Error | Acción Recomendada | Herramienta / Técnica |
-| :--- | :--- | :--- |
-| Nulos en variable crítica | Imputación Predictiva o Eliminación | `IterativeImputer` (Scikit-Learn) |
-| Outlier extremo (error) | Winsorization (Limitar al percentil 99) | `np.clip()` |
-| Formato inconsistente | Normalización de Strings | `.str.strip().str.upper()` |
-| Datos duplicados | Deduplicación basada en PK | `df.drop_duplicates(subset=['id'])` |
+**Data Lineage** es la capacidad de rastrear un dato desde el KPI final hasta la fuente original.
 
-#data-analysis #data-quality #engineering #pipeline #insights
+### ¿Por qué es crítico el Linaje?
+Si un CEO ve que la "Tasa de Churn" subió un 10%, la primera pregunta es: **"¿Este dato es correcto?"**. Sin linaje, el analista responde "creo que sí". Con linaje, el analista muestra:
+`Fuente SQL $\rightarrow$ Transformación Python (Filtro X) $\rightarrow$ Agregación Gold $\rightarrow$ Dashboard`.
+
+### Data Profiling Profesional
+Antes de limpiar, un experto hace un **Perfilado de Datos**. No mira los datos, mira las **metadatos de la calidad**:
+- **Completeness:** ¿Qué % de la columna es nulo?
+- **Uniqueness:** ¿Cuántos valores únicos hay respecto al total?
+- **Consistency:** ¿El formato es siempre el mismo (ej. todos los teléfonos tienen 10 dígitos)?
+- **Timeliness:** ¿Cuándo fue la última actualización del dato?
+
+---
+
+## 3. Expert Data Cleaning: Beyond the Basics | Limpieza de Datos Avanzada
+
+Ya conocemos la media y la mediana. A nivel experto, aplicamos técnicas de **estabilidad numérica**.
+
+### A. Winsorization (Limitación de Outliers)
+En lugar de borrar los outliers (lo que puede sesgar la muestra), la **Winsorización** consiste en limitar los valores extremos a un percentil específico (ej. el percentil 5 y 95).
+- **Uso:** Ideal en finanzas para evitar que una sola transacción millonaria arruine el promedio de un segmento.
+
+### B. Imputación Iterativa (MICE)
+Cuando los datos faltantes no son aleatorios, la media es un error. Usamos **MICE (Multivariate Imputation by Chained Equations)**.
+- **Lógica:** El algoritmo modela cada variable con nulos como una función de las otras variables. Es una "mini-IA" para rellenar huecos.
+
+### C. Feature Scaling: Standard vs Robust
+- **StandardScaler:** $\frac{x - \mu}{\sigma}$. Malo si hay outliers extremos.
+- **RobustScaler:** $\frac{x - \text{mediana}}{\text{IQR}}$. El estándar profesional cuando los datos están "sucios", ya que la mediana y el IQR no se dejan engañar por los valores extremos.
+
+---
+
+## 🛠️ Professional Workflow: The Quality Checklist
+
+Antes de entregar cualquier análisis, un experto pasa por este checklist de calidad:
+
+1. [ ] **Source Validation:** ¿La fuente de datos es la oficial o una copia desactualizada?
+2. [ ] **Grain Check:** ¿La granularidad es la correcta? (Ej: ¿Estoy sumando ventas diarias cuando el KPI pide promedio mensual?).
+3. [ ] **Outlier Impact:** ¿Si quito los 5 valores más altos, el resultado cambia drásticamente?
+4. [ ] **Logic Test:** ¿Hay valores imposibles? (Ej: Edad = -1, Salario = 0 en un cargo senior).
+5. [ ] **Lineage Doc:** ¿Tengo documentado el paso a paso de la transformación?
+
+#data-analysis #data-governance #medallion-architecture #data-quality #insights #engineering
