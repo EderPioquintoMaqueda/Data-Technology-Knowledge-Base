@@ -2,5 +2,7 @@
   "cssTheme": "Wasp",
   "accentColor": "#9288aa",
   "theme": "obsidian",
-  "enabledCssSnippets": []
+  "enabledCssSnippets": [
+    "neural-brain"
+  ]
 }
