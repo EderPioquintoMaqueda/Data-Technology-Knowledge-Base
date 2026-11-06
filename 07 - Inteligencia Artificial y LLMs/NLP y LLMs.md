@@ -1,71 +1,57 @@
-# 🗣️ NLP y el Camino hacia los LLMs | NLP & The Road to LLMs
+# 🗣️ NLP y el Camino hacia los LLMs: Alineación y Entrenamiento | NLP & The Road to LLMs: Alignment & Training
 
-## ¿Qué es? | What is it?
-**ES:** El Procesamiento de Lenguaje Natural (NLP) es la capacidad de las máquinas para entender, interpretar y generar lenguaje humano. Ha evolucionado desde reglas gramaticales rígidas hasta la comprensión semántica profunda mediante el uso de vectores.
+**ES:** El Procesamiento de Lenguaje Natural (NLP) ha dejado de ser una tarea de "clasificación de palabras" para convertirse en la creación de "motores de razonamiento". El salto la la IA moderna no fue solo el tamaño del modelo, sino la forma en que alineamos el modelo con la voluntad humana.
 
-**EN:** Natural Language Processing (NLP) is the ability of machines to understand, interpret, and generate human language. It has evolved from rigid grammatical rules to deep semantic understanding through the use of vectors.
-
----
-
-## 🛠️ La Evolución de la Representación del Texto | Text Representation Evolution
-
-Para que una IA entienda el texto, debemos convertir palabras en números.
-
-### 1. One-Hot Encoding (El inicio)
-Cada palabra es un vector con un solo "1" y el resto "0". 
-- **Problema**: Si tienes 50,000 palabras, cada palabra es un vector de 50,000 dimensiones. No hay noción de significado ( a "perro" y un "canino" son vectores totalmente distintos).
-
-### 2. Word Embeddings (El salto semántico)
-Palabras representadas en espacios vectoriales de baja dimensión (Ej: 300 dimensiones) donde palabras similares están físicamente cerca.
-- **Ejemplos**: Word2Vec, GloVe.
-- **Propiedad Mágica**: $\text{Vector}(\text{"Rey"}) - \text{Vector}(\text{"Hombre"}) + \text{Vector}(\text{"Mujer"}) \approx \text{Vector}(\text{"Reina"})$.
-
-### 3. Contextual Embeddings (La revolución)
-Una misma palabra tiene significados distintos según el contexto (Ej: "Banco" de sentarse vs "Banco" de dinero). Los modelos modernos (BERT, GPT) generan el vector de la palabra basándose en las palabras que la rodean.
+**EN:** Natural Language Processing (NLP) has stopped being a "word classification" task and has become the creation of "reasoning engines". The leap to modern AI was not just the model size, but the way we align the model with human intent.
 
 ---
 
-## ⚙️ Conceptos Técnicos Fundamentales | Core Technical Concepts
+## 1. The Alignment Problem: Making AI Useful | El Problema de la Alineación: Haciendo la IA Útil
 
-### 1. Tokenización (Tokenization)
-El proceso de dividir el texto en unidades más pequeñas llamadas **Tokens**. Un token no es necesariamente una palabra; puede ser una parte de una palabra (subword).
-- **Ejemplo**: "Inconcebible" $\rightarrow$ `["In", "conceb", "ible"]`.
+Un modelo pre-entrenado (como la base de GPT-4) es la "enciclopedia del mundo", pero no sabe seguir instrucciones. Para convertir un modelo base en un **Asistente**, usamos el proceso de Alineación.
 
-### 2. Atención (Attention Mechanism)
-La capacidad del modelo de "enfocarse" en las palabras más importantes de una oración para entender el significado.
-- **Fórmula Simplificada**: $\text{Atención} = \text{Softmax}(\frac{QK^T}{\sqrt{d_k}})V$
-  - $Q$ (Query): ¿Qué estoy buscando?
-  - $K$ (Key): ¿Qué información tiene esta palabra?
-  - $V$ (Value): El valor real de la palabra.
+### A. SFT (Supervised Fine-Tuning)
+Es el entrenamiento supervisado donde el modelo lee miles de ejemplos de $\text{Instrucción} \to \text{Respuesta Correcta}$. 
+- **Objetivo:** Que la IA aprenda el formato de "Chat" y cómo responder a peticiones específicas.
 
----
-
-## 💻 Implementación Técnica (HuggingFace) | Technical Implementation
-
-La librería estándar para NLP hoy es `Transformers` de HuggingFace.
-
-#### Ejemplo: Análisis de Sentimiento
-```python
-from transformers import pipeline
-
-# Cargar un pipeline pre-entrenado de análisis de sentimiento
-classifier = pipeline("sentiment-analysis")
-
-results = classifier([
-    "The machine is working perfectly, I am very happy!", 
-    "The sensor is failing and the production stopped."
-])
-
-for res in results:
-    print(f"Label: {res['label']}, Score: {res['score']:.4f}")
-```
+### B. RLHF (Reinforcement Learning from Human Feedback)
+Es la técnica que hace que los LLMs sean seguros y útiles.
+1. **Generación:** El modelo genera varias respuestas a la misma pregunta.
+2. **Ranking:** Un humano califica cuál respuesta es mejor, más veraz o más segura.
+3. **Reward Model:** Se entrena un modelo pequeño para predecir la calificación humana.
+4. **PPO (Proximal Policy Optimization):** El LLM se ajusta para maximizar la recompensa del Reward Model.
 
 ---
 
-## Conceptos Relacionados | Related Concepts
-- [[01 - Matemáticas|Álgebra Lineal]] $\longleftrightarrow$ Los Embeddings son vectores de alta dimensión.
-- [[07 - Inteligencia Artificial y LLMs|Fundamentos de IA y Deep Learning]] $\rightarrow$ El NLP moderno se basa en redes neuronales profundas.
-- [[07 - Inteligencia Artificial y LLMs|Transformers y LLMs]] $\rightarrow$ La arquitectura que implementa la Atención.
+## 2. The Modern Tokenization Pipeline | El Pipeline de Tokenización Moderno
+
+Los LLMs no ven palabras, ven **Tokens**. La tokenización es la interfaz entre el texto y el álgebra lineal.
+
+### BPE (Byte Pair Encoding)
+En lugar de usar palabras completas (que crearían un vocabulario infinito), la IA usa fragmentos.
+- **Lógica:** Las letras más comunes se agrupan en tokens.
+- **Ejemplo:** "Inconcebible" $\to$ `["In", "conceb", "ible"]`.
+- **Impacto Técnico:** Esto permite que el modelo maneje palabras nuevas o errores ortográficos descomponiéndolas en raíces conocidas.
 
 ---
-#nlp #embeddings #huggingface #tokens
+
+## 3. Context Windows & The "Lost in the Middle" Phenomenon | Ventanas de Contexto y el Fenómeno del Olvido Central
+
+La **Ventana de Contexto** es la cantidad de tokens que la IA puede "mantener en la memoria" antes de olvidar el inicio de la conversación.
+
+### El Problema del "Lost in the Middle":
+Estudios demuestran que los LLMs son muy buenos recordando la información al **principio** y al **final** del prompt, pero tienden a ignorar o olvidar la información situada en el **medio** de contextos muy largos.
+- **Estrategia de Experto:** Coloca la información más crítica y las instrucciones finales al final del prompt, justo antes de la respuesta.
+
+---
+
+## 💻 Technical Implementation: Fine-Tuning Logic (Conceptual)
+
+En la industria, no re-entrenamos todo el modelo (sería carísimo). Usamos **PEFT (Parameter-Efficient Fine-Tuning)**.
+
+### LoRA (Low-Rank Adaptation)
+En lugar de actualizar los billones de pesos de la matriz $\mathbf{W}$, LoRA añade dos matrices pequeñas $\mathbf{A}$ y $\mathbf{B}$ al lado de $\mathbf{W}$.
+$$\mathbf{W}_{\text{nuevo}} = \mathbf{W} + (\mathbf{A} \times \mathbf{B})$$
+- **Resultado:** Solo entrenamos el 0.1% de los parámetros, la memoria RAM requerida baja drásticamente y el modelo mantiene su conocimiento general mientras aprende el dominio específico.
+
+#nlp #llms #rlhf #tokenization #lora #ai-alignment #huggingface
