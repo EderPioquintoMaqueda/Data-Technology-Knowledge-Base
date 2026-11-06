@@ -1,75 +1,106 @@
-# 📈 Análisis Exploratorio de Datos (EDA): Rigor Estadístico y Patrones
+# 📈 Análisis Exploratorio de Datos (EDA): Perfilado Estadístico y Patrones Complejos | Advanced EDA: Statistical Profiling & Complex Patterns
 
-El EDA no es "hacer gráficos", es la fase de **validación de hipótesis**. Un analista senior utiliza el EDA para decidir qué modelo de Machine Learning es viable y para detectar sesgos que podrían arruinar la predicción.
+**ES:** Para un analista junior, el EDA es "hacer gráficas para ver qué pasa". Para un experto, el EDA es una **investigación forense**. El objetivo es extraer la estructura latente de los datos y validar supuestos matemáticos antes de que un modelo de ML tome decisiones basadas en ruido.
 
-## 1. Análisis Univariado: La Forma del Dato
-
-Antes de buscar relaciones, debemos entender la naturaleza de cada variable.
-
-### A. Análisis de Distribución y Sesgo (Skewness)
-La forma de la distribución determina qué métricas usar:
-- **Simétrica (Normal)**: $\text{Media} \approx \text{Mediana}$. Podemos usar la Media y Desviación Estándar.
-- **Sesgada a la Derecha (Positive Skew)**: La cola está a la derecha. La Media $>$ Mediana. **Acción**: Usar la Mediana o aplicar una transformación logarítmica ($\log(x)$) para normalizar el dato.
-- **Sesgada a la Izquierda (Negative Skew)**: La cola está a la izquierda. La Media $<$ Mediana.
-
-### B. Curtosis (Kurtosis)
-Mide el "picado" de la distribución. Una curtosis alta indica que la mayoría de los datos están muy concentrados, pero hay outliers extremos (colas pesadas). Esto es crítico en el **Riesgo Bancario** (Eventos de "Cisne Negro").
+**EN:** For a junior analyst, EDA is "making plots to see what happens". For an expert, EDA is a **forensic investigation**. The goal is to extract the latent structure of the data and validate mathematical assumptions before an ML model makes decisions based on noise.
 
 ---
 
-## 2. Análisis Bivariado y Multivariado: Relaciones y Dependencias
+## 1. Univariate Analysis: The Geometry of a Single Variable | Análisis Univariado: La Geometría de una Variable
 
-### A. Correlación vs. Causalidad
-El error más grave en datos es asumir que la correlación implica causalidad.
-- **Pearson ($r$)**: Mide la relación **lineal**. Sensible a outliers.
-- **Spearman ($\rho$)**: Mide la relación **monotónica** (si uno sube, el otro también, aunque no sea una línea recta). Es robusto a outliers.
+No basta con saber que hay un sesgo; hay que entender la **implicación matemática** de ese sesgo.
 
-### B. Matriz de Correlación y Multicolinealidad
-En modelos de IA, si dos variables están muy correlacionadas ($r > 0.9$), ocurre la **Multicolinealidad**.
-- **Impacto**: El modelo se vuelve inestable y los pesos ($\mathbf{w}$) pierden sentido físico.
-- **Solución**: Eliminar una de las variables o usar **PCA** (conectando con [[01 - Matemáticas|Álgebra Lineal]]).
+### A. Skewness (Sesgo) y Transformaciones de Datos
+El sesgo afecta la capacidad de los modelos lineales para converger.
+- **Positive Skew (Sesgo a la Derecha):** $\text{Media} > \text{Mediana}$. Común en ingresos o precios de viviendas.
+    - **Solución Experta:** Aplicar $\log(x)$, $\sqrt{x}$ o la **Transformación Box-Cox**. Esto "comprime" la cola derecha y hace que la distribución se acerque a una Normal, mejorando la performance de la regresión.
+- **Negative Skew (Sesgo a la Izquierda):** $\text{Media} < \text{Mediana}$.
+
+### B. Kurtosis y el Riesgo de "Colas Pesadas" (Fat Tails)
+La curtosis mide la probabilidad de eventos extremos.
+- **Leptocúrtica (Kurtosis Alta):** Distribución muy picuda con colas largas. Indica que los outliers son frecuentes y significativos.
+- **Aplicación en Riesgo:** En banca, una curtosis alta en la cartera de créditos significa que hay una probabilidad mayor de "default masivo" (evento de Cisne Negro) que lo que predeciría una distribución Normal.
 
 ---
 
-## 3. Implementación Profesional de EDA en Python
+## 2. Bivariate & Multivariate Analysis: Uncovering Latent Relations | Análisis Bivariado y Multivariado: Descubriendo Relaciones Latentes
 
-Un pipeline de EDA senior sigue este flujo:
+### A. Más allá de Pearson: Correlaciones No Lineales
+La correlación de Pearson solo mide líneas rectas. Un experto usa:
+- **Spearman's Rank Correlation:** Mide relaciones **monotónicas** (si uno sube, el otro sube, aunque no sea lineal). Es la herramienta correcta para datos con outliers.
+- **Kendall's Tau:** Ideal para datasets muy pequeños o variables ordinales.
+
+### B. El Problema de la Multicolinealidad y el VIF
+Cuando dos variables están muy correlacionadas, el modelo de ML sufre de **Inestabilidad de Pesos**.
+- **VIF (Variance Inflation Factor):** Un experto calcula el VIF para cada variable.
+    - $\text{VIF} > 5 \text{ o } 10 \implies$ Multicolinealidad severa.
+    - **Acción:** Eliminar la variable redundante o combinar ambas mediante PCA.
+
+### C. Dimensionality Reduction for EDA (PCA)
+Cuando tienes 50 variables, no puedes hacer 50 histogramas.
+- **PCA (Principal Component Analysis):** Proyectamos las 50 dimensiones en las 2 o 3 direcciones de máxima varianza.
+- **Uso en EDA:** Visualizar si los datos forman "clusters" naturales antes de aplicar cualquier algoritmo de clustering.
+
+---
+
+## 3. Advanced Outlier Detection: ML-Based Methods | Detección Avanzada de Outliers: Métodos basados en ML
+
+El Z-Score y el IQR fallan cuando los outliers no son extremos en una sola dimensión, sino que son "extraños" en la combinación de dimensiones.
+
+### A. Isolation Forest (Bosques de Aislamiento)
+En lugar de medir la distancia al centro, este algoritmo intenta "aislar" cada punto.
+- **Lógica:** Los outliers son más fáciles de aislar (requieren menos divisiones del espacio) que los puntos normales.
+- **Ventaja:** Detecta outliers multivariados que el Z-Score ignoraría.
+
+### B. Local Outlier Factor (LOF)
+Mide la densidad local de un punto comparada con la de sus vecinos.
+- **Lógica:** Si un punto tiene una densidad mucho menor que sus vecinos, es un outlier local.
+
+---
+
+## 💻 Professional EDA Pipeline (The Expert's Code)
 
 ```python
 import pandas as pd
+import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy import stats
+from sklearn.decomposition import PCA
+from sklearn.ensemble import IsolationForest
 
-def professional_eda(df, target_col):
-    # 1. Análisis de Distribución del Target
-    plt.figure(figsize=(10, 4))
-    sns.histplot(df[target_col], kde=True)
-    plt.title(f"Distribución de {target_col}")
-    plt.show()
+def expert_eda_pipeline(df, target_col):
+    # 1. Análisis de Distribución y Transformación sugerida
+    skew = df[target_col].skew()
+    print(f"Skewness: {skew:.2f}")
+    if abs(skew) > 0.75:
+        print("Sugerencia: Aplicar transformación Logarítmica para normalizar.")
+
+    # 2. Detección de Outliers Multivariados (Isolation Forest)
+    iso = IsolationForest(contamination=0.05, random_state=42)
+    numeric_cols = df.select_dtypes(include=np.number)
+    outliers = iso.fit_predict(numeric_cols)
+    df['is_outlier'] = outliers # -1 es outlier, 1 es normal
+    print(f"Outliers detectados: {len(df[df['is_outlier'] == -1])}")
+
+    # 3. Reducción de Dimensionalidad para Visualización (PCA)
+    pca = PCA(n_components=2)
+    components = pca.fit_transform(numeric_cols.fillna(0))
     
-    # 2. Detección de Outliers mediante Z-Score
-    z_scores = np.abs(stats.zscore(df.select_dtypes(include=np.number)))
-    outliers = (z_scores > 3).sum()
-    print(f"Outliers detectados por columna:\n{outliers}")
-    
-    # 3. Matriz de Correlación Filtrada
-    corr = df.corr(numeric_only=True)
-    # Solo mostramos correlaciones fuertes (> 0.5 o < -0.5)
-    strong_corr = corr[(corr > 0.5) | (corr < -0.5)]
-    sns.heatmap(strong_corr, annot=True, cmap='RdBu', center=0)
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x=components[:,0], y=components[:,1], hue=df[target_col])
+    plt.title("Proyección PCA de los datos (Estructura Latente)")
     plt.show()
 
-# Uso
-# professional_eda(df, 'ventas_mensuales')
+# Uso: expert_eda_pipeline(df, 'target')
 ```
 
 ---
 
-## 🎯 Reto de Análisis Técnico
-**Escenario**: Tienes un dataset de salarios. La media es \$5,000 pero la mediana es \$2,500.
-1. ¿Qué tipo de sesgo tiene la distribución? (Respuesta: Sesgo Positivo / Derecha).
-2. ¿Qué significa esto en el mundo real? (Respuesta: Hay unos pocos salarios extremadamente altos que inflan la media).
-3. ¿Qué métrica de tendencia central es la más representativa aquí? (Respuesta: La Mediana).
+## 🎯 Reto de Análisis Forense
+**Escenario:** Tienes una correlación de Pearson de 0.1 entre el "Gasto en Publicidad" y las "Ventas", pero la correlación de Spearman es de 0.8.
+1. **¿Qué significa esto?** (Respuesta: La relación no es una línea recta, pero es fuertemente monotónica. Hay un crecimiento, pero probablemente saturado o exponencial).
+2. **¿Qué gráfico usarías para confirmar?** (Respuesta: Scatter plot con una línea de suavizado LOWESS).
+3. **¿Qué pasaría si usas una Regresión Lineal simple aquí?** (Respuesta: El modelo tendría un error alto porque intentaría ajustar una línea recta a una curva).
 
-#eda #statistics #data-science #python #outliers #correlation
+#eda #statistics #pca #isolation-forest #data-science #python-pro #multivariate-analysis
