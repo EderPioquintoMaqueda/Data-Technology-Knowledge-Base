@@ -1,0 +1,224 @@
+{
+  "main": {
+    "id": "023027067fc839ad",
+    "type": "split",
+    "children": [
+      {
+        "id": "5af6c5d490c3d850",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dfe224687f949960",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Vista gráfica"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "782b56daeccf63a5",
+    "type": "split",
+    "children": [
+      {
+        "id": "283fe6657c8ce807",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8ae6b2c195aaa906",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de archivos"
+            }
+          },
+          {
+            "id": "08d85b9f616b465b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Buscar"
+            }
+          },
+          {
+            "id": "4866f99b281bb799",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "0437115e54c5924f",
+    "type": "split",
+    "children": [
+      {
+        "id": "ad47dce6d4b575eb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f8dc90060384d165",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Enlaces entrantes"
+            }
+          },
+          {
+            "id": "67151aa107840437",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Enlaces salientes"
+            }
+          },
+          {
+            "id": "840ed20322d73636",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "0ae5c3a4848d2dc9",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas las propiedades"
+            }
+          },
+          {
+            "id": "356275e36b9d109b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Esquema"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir selector rápido": false,
+      "graph:Abrir vista gráfica": false,
+      "canvas:Crear nuevo lienzo": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Crear nueva base": false
+    }
+  },
+  "active": "dfe224687f949960",
+  "lastOpenFiles": [
+    "02 - Programación/Polars_High_Performance.md.tmp.25412.aff6a5a55d26",
+    "02 - Programación/Ecosistema_Librerias_Python.md",
+    "02 - Programación/Ecosistema_Librerias_Python.md.tmp.25412.db9f72ece06d",
+    "11 - Soft Skills & Professional Growth/Data_Storytelling.md",
+    "11 - Soft Skills & Professional Growth",
+    "08 - Ingeniería y Herramientas/FastAPI_ML_Deployment.md",
+    "08 - Ingeniería y Herramientas/FastAPI_ML_Deployment.md.tmp.20132.90c7ccefcd51",
+    "08 - Ingeniería y Herramientas/Docker_for_DS.md",
+    "08 - Ingeniería y Herramientas/Docker_for_DS.md.tmp.20132.dd8ec227fa12",
+    "05 - Visualización y Business Intelligence/BI_Optimization_Tools.md",
+    "05 - Visualización y Business Intelligence/BI_Optimization_Tools.md.tmp.20132.50fea9d6cf8f",
+    "02 - Programación/Visualizacion_Interactiva.md",
+    "02 - Programación/Visualizacion_Interactiva.md.tmp.20132.adab5966189f",
+    "02 - Programación/Entornos_y_Calidad.md",
+    "02 - Programación/Entornos_y_Calidad.md.tmp.20132.dfefd1c398b0",
+    "02 - Programación/Web_Scraping_Profesional.md",
+    "02 - Programación/Web_Scraping_Profesional.md.tmp.20132.d7757f5c98e1",
+    "02 - Programación/SciPy_Statsmodels_Professional.md",
+    "02 - Programación/SciPy_Statsmodels_Professional.md.tmp.20132.5fac8df15ac6",
+    "02 - Programación/Polars_High_Performance.md",
+    "02 - Programación/Polars_High_Performance.md.tmp.20132.4aeb4948eae6",
+    "02 - Programación/Introducción a Python.md",
+    "02 - Programación/Pandas_High_Performance.md",
+    "01 - Matemáticas/Álgebra Lineal I - Vectores.md",
+    "05 - Visualización y Business Intelligence/Power_Query_M.md",
+    "05 - Visualización y Business Intelligence/DAX_Maestro.md",
+    "01 - Matemáticas/Álgebra Lineal/AL - Transformaciones Lineales.md",
+    "03 - Datos y Bases de Datos/Postgres_Internals.md",
+    "03 - Datos y Bases de Datos/SQL_Avanzado.md",
+    "01 - Matemáticas/Álgebra Lineal/AL - Fundamentos.md",
+    "01 - Matemáticas/Álgebra Lineal II - Matrices.md",
+    "01 - Matemáticas/Álgebra Lineal/AL - Determinantes e Inversas.md",
+    "01 - Matemáticas/Cálculo y Optimización/CAL - Optimos Locales vs Globales.md",
+    "Sin título.canvas",
+    "01 - Matemáticas/Cálculo y Optimización/CAL - Descenzo del Gradiente.md",
+    "01 - Matemáticas/Cálculo y Optimización/CAL - Regla de la Cadena.md",
+    "01 - Matemáticas/Cálculo y Optimización/CAL - Derivadas Parciales y Gradiente.md"
+  ]
+}

@@ -1,0 +1,58 @@
+/*
+   NEURAL NETWORK THEME - Brain Stimulation Effect
+   Instrucciones: Guardar como 'neural-brain.css' en .obsidian/snippets/
+*/
+
+:root {
+    --neural-glow: #00f2ff;
+    --neural-pulse: #7000ff;
+    --neural-bg: #0a0a0c;
+}
+
+/* Fondo general más profundo para resaltar los "pulsos" */
+.theme-dark, .theme-dark-// {
+    --background-primary: var(--neural-bg);
+    --background-secondary: #12121a;
+}
+
+/* Animación de pulso para los títulos */
+@keyframes brain-pulse {
+    0% { text-shadow: 0 0 5px var(--neural-glow); }
+    50% { text-shadow: 0 0 20px var(--neural-pulse), 0 0 30px var(--neural-glow); }
+    100% { text-shadow: 0, 0 5px var(--neural-glow); }
+}
+
+.markdown-rendered h1, .markdown-rendered h2 {
+    color: var(--neural-glow) !important;
+    animation: brain-pulse 3s infinite ease-in-out;
+    letter-spacing: 1px;
+}
+
+/* Efecto de "Conexiones Eléctricas" en los enlaces */
+.markdown-rendered a, .internal-link {
+    color: #b388ff !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    border-bottom: 1px dashed #444;
+}
+
+.markdown-rendered a:hover, .internal-link:hover {
+    color: var(--neural-glow) !important;
+    border-bottom: 1px solid var(--neural-glow);
+    text-shadow: 0 0 10px var(--neural-glow);
+    padding-left: 5px;
+}
+
+/* Resaltado de bloques de código como "Nodos de Procesamiento" */
+.markdown-rendered pre, .markdown-rendered code {
+    border: 1px solid #333 !important;
+    background-color: #1a1a24 !important;
+    box-shadow: inset 0 0 10px #000;
+    border-radius: 8px;
+}
+
+/* Efecto de resplandor en el cursor */
+.cm-cursor {
+    border-left: 2px solid var(--neural-glow) !important;
+    box-shadow: 0 0 8px var(--neural-glow);
+}

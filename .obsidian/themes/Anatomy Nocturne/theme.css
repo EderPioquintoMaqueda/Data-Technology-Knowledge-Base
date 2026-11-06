@@ -1,0 +1,1762 @@
+/*
+===============================================================================
+ANATOMY NOCTURNE
+An Obsidian theme for anatomical knowledge, research and long-form thinking.
+
+Design language:
+- Calm
+- Scholarly
+- Precise
+- Anatomical
+- Nocturnal
+- Long-session friendly
+
+Medical identity: subtle
+Productivity: primary
+===============================================================================
+*/
+
+/* ============================================================================
+01. DESIGN TOKENS
+============================================================================ */
+
+.theme-dark {
+	/* Environment */
+	--anatomy-bg: #0b1218;
+	--anatomy-surface: #111c24;
+	--anatomy-editor: #16242d;
+	--anatomy-raised: #1c2d36;
+
+	/* Borders */
+	--anatomy-border: #30434d;
+	--anatomy-border-soft: #263740;
+
+	/* Text */
+	--anatomy-text: #dce7ea;
+	--anatomy-text-soft: #b9c8cd;
+	--anatomy-muted: #9fb1b8;
+	--anatomy-faint: #70838b;
+
+	/* Brand */
+	--anatomy-accent: #36b7a5;
+	--anatomy-accent-hover: #49c8b6;
+	--anatomy-accent-soft: rgba(54, 183, 165, 0.14);
+	--anatomy-accent-faint: rgba(54, 183, 165, 0.07);
+
+	/* Semantic */
+	--anatomy-info: #5ba9d6;
+	--anatomy-success: #63b98b;
+	--anatomy-warning: #d5a85a;
+	--anatomy-danger: #d46d70;
+
+	/* Code */
+	--anatomy-code-bg: #0e171e;
+
+	/* Selection */
+	--anatomy-selection: rgba(54, 183, 165, 0.22);
+
+	/* Shadows */
+	--anatomy-shadow: rgba(0, 0, 0, 0.22);
+
+	/* Geometry */
+	--anatomy-radius-xs: 4px;
+	--anatomy-radius-sm: 6px;
+	--anatomy-radius-md: 8px;
+	--anatomy-radius-lg: 12px;
+
+	/* Spacing */
+	--anatomy-space-xs: 4px;
+	--anatomy-space-sm: 8px;
+	--anatomy-space-md: 12px;
+	--anatomy-space-lg: 16px;
+	--anatomy-space-xl: 24px;
+	--anatomy-space-2xl: 32px;
+
+	/* Typography */
+	--anatomy-line-height: 1.65;
+	--anatomy-heading-line-height: 1.25;
+
+	/* Obsidian semantic variables */
+	--background-primary: var(--anatomy-bg);
+	--background-primary-alt: var(--anatomy-surface);
+	--background-secondary: var(--anatomy-surface);
+	--background-secondary-alt: var(--anatomy-raised);
+
+	--background-modifier-border: var(--anatomy-border);
+	--background-modifier-border-hover: var(--anatomy-accent);
+	--background-modifier-form-field: var(--anatomy-surface);
+	--background-modifier-form-field-highlighted: var(--anatomy-raised);
+	--background-modifier-hover: var(--anatomy-accent-soft);
+	--background-modifier-active-hover: var(--anatomy-accent-soft);
+
+	--text-normal: var(--anatomy-text);
+	--text-muted: var(--anatomy-muted);
+	--text-faint: var(--anatomy-faint);
+
+	--text-accent: var(--anatomy-accent);
+	--text-accent-hover: var(--anatomy-accent-hover);
+
+	--interactive-accent: var(--anatomy-accent);
+	--interactive-accent-hover: var(--anatomy-accent-hover);
+
+	--text-selection: var(--anatomy-selection);
+
+	--code-background: var(--anatomy-code-bg);
+
+	--tab-background-active: var(--anatomy-editor);
+	--tab-text-color: var(--anatomy-muted);
+	--tab-text-color-active: var(--anatomy-text);
+
+	--nav-item-background-hover: var(--anatomy-accent-soft);
+	--nav-item-background-active: var(--anatomy-accent-soft);
+
+	--scrollbar-bg: transparent;
+	--scrollbar-thumb-bg: var(--anatomy-border);
+	--scrollbar-active-thumb-bg: var(--anatomy-muted);
+}
+
+
+.theme-light {
+	/* Environment */
+	--anatomy-bg: #f3f6f4;
+	--anatomy-surface: #fafcfb;
+	--anatomy-editor: #fafcfb;
+	--anatomy-raised: #e8efec;
+
+	/* Borders */
+	--anatomy-border: #cbd8d5;
+	--anatomy-border-soft: #dce5e2;
+
+	/* Text */
+	--anatomy-text: #203036;
+	--anatomy-text-soft: #405157;
+	--anatomy-muted: #607178;
+	--anatomy-faint: #85949a;
+
+	/* Brand */
+	--anatomy-accent: #168f82;
+	--anatomy-accent-hover: #0e766b;
+	--anatomy-accent-soft: rgba(22, 143, 130, 0.12);
+	--anatomy-accent-faint: rgba(22, 143, 130, 0.06);
+
+	/* Semantic */
+	--anatomy-info: #327fae;
+	--anatomy-success: #39885d;
+	--anatomy-warning: #a87929;
+	--anatomy-danger: #b74e52;
+
+	/* Code */
+	--anatomy-code-bg: #eef3f1;
+
+	/* Selection */
+	--anatomy-selection: rgba(22, 143, 130, 0.18);
+
+	/* Shadows */
+	--anatomy-shadow: rgba(32, 48, 54, 0.10);
+
+	/* Geometry */
+	--anatomy-radius-xs: 4px;
+	--anatomy-radius-sm: 6px;
+	--anatomy-radius-md: 8px;
+	--anatomy-radius-lg: 12px;
+
+	/* Spacing */
+	--anatomy-space-xs: 4px;
+	--anatomy-space-sm: 8px;
+	--anatomy-space-md: 12px;
+	--anatomy-space-lg: 16px;
+	--anatomy-space-xl: 24px;
+	--anatomy-space-2xl: 32px;
+
+	/* Typography */
+	--anatomy-line-height: 1.65;
+	--anatomy-heading-line-height: 1.25;
+
+	/* Obsidian semantic variables */
+	--background-primary: var(--anatomy-bg);
+	--background-primary-alt: var(--anatomy-surface);
+	--background-secondary: var(--anatomy-surface);
+	--background-secondary-alt: var(--anatomy-raised);
+
+	--background-modifier-border: var(--anatomy-border);
+	--background-modifier-border-hover: var(--anatomy-accent);
+	--background-modifier-form-field: var(--anatomy-surface);
+	--background-modifier-form-field-highlighted: var(--anatomy-raised);
+	--background-modifier-hover: var(--anatomy-accent-soft);
+	--background-modifier-active-hover: var(--anatomy-accent-soft);
+
+	--text-normal: var(--anatomy-text);
+	--text-muted: var(--anatomy-muted);
+	--text-faint: var(--anatomy-faint);
+
+	--text-accent: var(--anatomy-accent);
+	--text-accent-hover: var(--anatomy-accent-hover);
+
+	--interactive-accent: var(--anatomy-accent);
+	--interactive-accent-hover: var(--anatomy-accent-hover);
+
+	--text-selection: var(--anatomy-selection);
+
+	--code-background: var(--anatomy-code-bg);
+
+	--tab-background-active: var(--anatomy-editor);
+	--tab-text-color: var(--anatomy-muted);
+	--tab-text-color-active: var(--anatomy-text);
+
+	--nav-item-background-hover: var(--anatomy-accent-soft);
+	--nav-item-background-active: var(--anatomy-accent-soft);
+
+	--scrollbar-bg: transparent;
+	--scrollbar-thumb-bg: var(--anatomy-border);
+	--scrollbar-active-thumb-bg: var(--anatomy-muted);
+}
+
+
+/* ============================================================================
+02. GLOBAL
+============================================================================ */
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--anatomy-bg);
+}
+
+body {
+	background: var(--anatomy-bg);
+	color: var(--anatomy-text);
+	--font-text-theme: var(--font-text);
+	--font-interface-theme: var(--font-interface);
+}
+
+.workspace {
+	background: var(--anatomy-bg);
+}
+
+::selection {
+	background: var(--anatomy-selection);
+	color: var(--anatomy-text);
+}
+
+input,
+textarea,
+button {
+	font: inherit;
+}
+
+button {
+	color: var(--anatomy-text);
+}
+
+
+/* ============================================================================
+03. WORKSPACE
+============================================================================ */
+
+.workspace,
+.workspace-split,
+.workspace-tab-container {
+	background: var(--anatomy-bg);
+}
+
+.workspace-tab-header-container {
+	background: var(--anatomy-surface);
+	border-bottom: 1px solid var(--anatomy-border);
+}
+
+.workspace-tab-header-container-inner {
+	background: transparent;
+}
+
+.workspace-tab-header {
+	color: var(--anatomy-muted);
+	transition:
+		color 140ms ease,
+		background 140ms ease;
+}
+
+.workspace-tab-header:hover {
+	color: var(--anatomy-text);
+	background: var(--anatomy-accent-faint);
+}
+
+.workspace-tab-header.is-active {
+	color: var(--anatomy-text);
+	background: var(--anatomy-editor);
+}
+
+.workspace-tab-header.is-active::before {
+	background: var(--anatomy-accent);
+	opacity: 1;
+}
+
+.workspace-tab-header-inner {
+	border-radius: var(--anatomy-radius-sm);
+}
+
+.workspace-tab-header-status-icon {
+	color: var(--anatomy-accent);
+}
+
+
+/* ============================================================================
+04. SIDEBARS
+============================================================================ */
+
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split {
+	background: var(--anatomy-surface);
+}
+
+.mod-left-split .workspace-tab-container,
+.mod-right-split .workspace-tab-container {
+	background: var(--anatomy-surface);
+}
+
+.nav-header {
+	padding: var(--anatomy-space-md);
+}
+
+.nav-files-container {
+	padding: var(--anatomy-space-sm);
+}
+
+.nav-folder-title,
+.nav-file-title {
+	border-radius: var(--anatomy-radius-sm);
+	color: var(--anatomy-text-soft);
+	transition:
+		background 140ms ease,
+		color 140ms ease;
+}
+
+.nav-folder-title:hover,
+.nav-file-title:hover {
+	background: var(--anatomy-accent-soft);
+	color: var(--anatomy-text);
+}
+
+.nav-file-title.is-active {
+	background: var(--anatomy-accent-soft);
+	color: var(--anatomy-accent);
+}
+
+.nav-folder-title-content,
+.nav-file-title-content {
+	line-height: 1.4;
+}
+
+.nav-folder-title {
+	font-weight: 600;
+}
+
+.nav-folder-collapse-indicator {
+	color: var(--anatomy-muted);
+}
+
+
+/* ============================================================================
+05. RIBBON
+============================================================================ */
+
+.side-dock-ribbon {
+	background: var(--anatomy-surface);
+	border-color: var(--anatomy-border);
+}
+
+.side-dock-ribbon-action {
+	color: var(--anatomy-muted);
+	border-radius: var(--anatomy-radius-sm);
+}
+
+.side-dock-ribbon-action:hover {
+	color: var(--anatomy-accent);
+	background: var(--anatomy-accent-soft);
+}
+
+
+/* ============================================================================
+06. STATUS BAR
+============================================================================ */
+
+.status-bar {
+	background: var(--anatomy-surface);
+	border-top: 1px solid var(--anatomy-border);
+	color: var(--anatomy-muted);
+}
+
+.status-bar-item {
+	color: var(--anatomy-muted);
+}
+
+.status-bar-item:hover {
+	color: var(--anatomy-text);
+}
+
+
+/* ============================================================================
+07. TITLE BAR
+============================================================================ */
+
+.titlebar {
+	background: var(--anatomy-surface);
+	border-bottom: 1px solid var(--anatomy-border);
+}
+
+.titlebar-text {
+	color: var(--anatomy-muted);
+}
+
+.titlebar-button {
+	color: var(--anatomy-muted);
+}
+
+.titlebar-button:hover {
+	color: var(--anatomy-text);
+	background: var(--anatomy-accent-soft);
+}
+
+
+/* ============================================================================
+08. EDITOR
+============================================================================ */
+
+.workspace-leaf-content,
+.view-content,
+.markdown-source-view,
+.markdown-reading-view {
+	background: var(--anatomy-editor);
+}
+
+.markdown-source-view.mod-cm6 .cm-scroller,
+.markdown-preview-view {
+	scrollbar-gutter: stable;
+}
+
+.markdown-source-view.mod-cm6 .cm-contentContainer,
+.markdown-source-view.mod-cm6 .cm-content {
+	max-width: 100%;
+}
+
+.markdown-source-view.mod-cm6 .cm-content {
+	padding-top: 40px;
+	padding-bottom: 80px;
+}
+
+.markdown-source-view.mod-cm6 .cm-gutters {
+	background: var(--anatomy-editor);
+	border-right: 1px solid var(--anatomy-border-soft);
+}
+
+.markdown-source-view.mod-cm6 .cm-gutterElement {
+	color: var(--anatomy-faint);
+}
+
+.markdown-source-view.mod-cm6 .cm-activeLine {
+	background: var(--anatomy-accent-faint);
+}
+
+.markdown-source-view.mod-cm6 .cm-activeLineGutter {
+	color: var(--anatomy-accent);
+	background: var(--anatomy-accent-faint);
+}
+
+
+/* ============================================================================
+09. READING VIEW
+============================================================================ */
+
+.markdown-preview-view {
+	padding-top: 40px;
+	padding-bottom: 80px;
+}
+
+.markdown-preview-view .markdown-preview-section {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.markdown-preview-view p {
+	line-height: var(--anatomy-line-height);
+}
+
+.markdown-preview-view li {
+	line-height: 1.6;
+}
+
+.markdown-preview-view blockquote {
+	margin: 1.5em 0;
+	padding: 12px 18px;
+	border-left: 3px solid var(--anatomy-accent);
+	background: var(--anatomy-accent-faint);
+	color: var(--anatomy-text-soft);
+}
+
+
+/* ============================================================================
+10. TYPOGRAPHY
+============================================================================ */
+
+.markdown-preview-view,
+.cm-editor {
+	font-size: 16px;
+}
+
+.markdown-preview-view h1,
+.markdown-preview-view h2,
+.markdown-preview-view h3,
+.markdown-preview-view h4,
+.markdown-preview-view h5,
+.markdown-preview-view h6 {
+	color: var(--anatomy-text);
+	line-height: var(--anatomy-heading-line-height);
+	font-weight: 650;
+	letter-spacing: -0.01em;
+}
+
+.markdown-preview-view h1 {
+	font-size: 2em;
+	margin-top: 1.6em;
+	margin-bottom: 0.65em;
+	padding-bottom: 0.35em;
+	border-bottom: 1px solid var(--anatomy-border);
+}
+
+.markdown-preview-view h2 {
+	font-size: 1.55em;
+	margin-top: 1.5em;
+	margin-bottom: 0.6em;
+}
+
+.markdown-preview-view h3 {
+	font-size: 1.3em;
+	margin-top: 1.35em;
+	margin-bottom: 0.55em;
+}
+
+.markdown-preview-view h4 {
+	font-size: 1.12em;
+	margin-top: 1.2em;
+}
+
+.markdown-preview-view h5,
+.markdown-preview-view h6 {
+	font-size: 1em;
+}
+
+.cm-header {
+	font-weight: 650;
+}
+
+.cm-header-1 {
+	font-size: 1.9em;
+}
+
+.cm-header-2 {
+	font-size: 1.5em;
+}
+
+.cm-header-3 {
+	font-size: 1.3em;
+}
+
+
+/* ============================================================================
+11. LINKS
+============================================================================ */
+
+a,
+.cm-link,
+.cm-hmd-internal-link {
+	color: var(--anatomy-accent);
+}
+
+a:hover,
+.cm-link:hover,
+.cm-hmd-internal-link:hover {
+	color: var(--anatomy-accent-hover);
+}
+
+.markdown-preview-view .internal-link {
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+	transition:
+		color 140ms ease,
+		border-color 140ms ease;
+}
+
+.markdown-preview-view .internal-link:hover {
+	border-bottom-color: var(--anatomy-accent);
+}
+
+.external-link {
+	color: var(--anatomy-accent);
+}
+
+
+/* ============================================================================
+12. TAGS
+============================================================================ */
+
+.tag {
+	color: var(--anatomy-accent);
+	background: var(--anatomy-accent-soft);
+	border: 1px solid transparent;
+	border-radius: 999px;
+	padding: 2px 8px;
+	text-decoration: none;
+}
+
+.tag:hover {
+	border-color: var(--anatomy-accent);
+	background: var(--anatomy-accent-faint);
+}
+
+
+/* ============================================================================
+13. LISTS
+============================================================================ */
+
+.markdown-preview-view ul,
+.markdown-preview-view ol {
+	padding-left: 1.6em;
+}
+
+.markdown-preview-view li::marker {
+	color: var(--anatomy-accent);
+}
+
+.markdown-source-view.mod-cm6 .cm-formatting-list {
+	color: var(--anatomy-accent);
+}
+
+
+/* ============================================================================
+14. CHECKBOXES / TASKS
+============================================================================ */
+
+input[type="checkbox"] {
+	accent-color: var(--anatomy-accent);
+}
+
+.task-list-item-checkbox {
+	border-color: var(--anatomy-border);
+}
+
+.task-list-item-checkbox:checked {
+	background: var(--anatomy-accent);
+	border-color: var(--anatomy-accent);
+}
+
+.task-list-item.is-checked {
+	color: var(--anatomy-muted);
+}
+
+
+/* ============================================================================
+15. TABLES
+============================================================================ */
+
+/* Table container */
+
+.markdown-preview-view table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-md);
+	overflow: hidden;
+	background: var(--anatomy-surface);
+}
+
+/* --------------------------------------------------------------------------
+TABLE HEADER
+-------------------------------------------------------------------------- */
+
+.markdown-preview-view table thead {
+	background: var(--anatomy-raised);
+}
+
+.markdown-preview-view table thead tr,
+.markdown-preview-view table thead th {
+	background-color: var(--anatomy-raised);
+}
+
+.markdown-preview-view table th {
+	color: var(--anatomy-text);
+	font-weight: 650;
+	text-align: left;
+}
+
+/* --------------------------------------------------------------------------
+TABLE BODY — NO ZEBRA STRIPING
+-------------------------------------------------------------------------- */
+
+.markdown-preview-view table tbody,
+.markdown-preview-view table tbody tr,
+.markdown-preview-view table tbody tr:nth-child(odd),
+.markdown-preview-view table tbody tr:nth-child(even) {
+	background-color: var(--anatomy-surface);
+}
+
+/* Every body cell gets the same background */
+
+.markdown-preview-view table tbody td {
+	background-color: var(--anatomy-surface);
+	color: var(--anatomy-text);
+}
+
+/* --------------------------------------------------------------------------
+DISABLE ROW HOVER COLOR
+-------------------------------------------------------------------------- */
+
+.markdown-preview-view table tbody tr:hover,
+.markdown-preview-view table tbody tr:nth-child(odd):hover,
+.markdown-preview-view table tbody tr:nth-child(even):hover,
+.markdown-preview-view table tbody tr:hover td,
+.markdown-preview-view table tbody tr:nth-child(odd):hover td,
+.markdown-preview-view table tbody tr:nth-child(even):hover td {
+	background-color: var(--anatomy-surface);
+	color: var(--anatomy-text);
+}
+
+/* Header hover remains the header color */
+
+.markdown-preview-view table thead tr:hover,
+.markdown-preview-view table thead th:hover {
+	background-color: var(--anatomy-raised);
+	color: var(--anatomy-text);
+}
+
+/* --------------------------------------------------------------------------
+CELLS
+-------------------------------------------------------------------------- */
+
+.markdown-preview-view table th,
+.markdown-preview-view table td {
+	padding: 10px 14px;
+	border-right: 1px solid var(--anatomy-border-soft);
+	border-bottom: 1px solid var(--anatomy-border-soft);
+}
+
+/* Last column */
+
+.markdown-preview-view table th:last-child,
+.markdown-preview-view table td:last-child {
+	border-right: 0;
+}
+
+/* Last row */
+
+.markdown-preview-view table tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+/* ============================================================================
+16. CALLOUTS
+============================================================================ */
+
+.callout {
+	border: 1px solid var(--anatomy-border);
+	border-left: 3px solid var(--anatomy-accent);
+	border-radius: var(--anatomy-radius-md);
+	background: var(--anatomy-surface);
+	box-shadow: none;
+}
+
+.callout-title {
+	color: var(--anatomy-text);
+	font-weight: 650;
+}
+
+.callout-icon {
+	color: var(--anatomy-accent);
+}
+
+.callout-content {
+	color: var(--anatomy-text-soft);
+}
+
+.callout[data-callout="note"] {
+	--callout-color: 54, 183, 165;
+}
+
+.callout[data-callout="info"] {
+	--callout-color: 91, 169, 214;
+}
+
+.callout[data-callout="tip"] {
+	--callout-color: 99, 185, 139;
+}
+
+.callout[data-callout="warning"] {
+	--callout-color: 213, 168, 90;
+}
+
+.callout[data-callout="danger"] {
+	--callout-color: 212, 109, 112;
+}
+
+.callout[data-callout="important"] {
+	--callout-color: 54, 183, 165;
+}
+
+
+/* ============================================================================
+17. BLOCKQUOTES
+============================================================================ */
+
+.markdown-preview-view blockquote {
+	border-left: 3px solid var(--anatomy-accent);
+	background: var(--anatomy-accent-faint);
+	color: var(--anatomy-text-soft);
+}
+
+
+/* ============================================================================
+18. CODE
+============================================================================ */
+
+code {
+	color: var(--anatomy-accent);
+	background: var(--anatomy-code-bg);
+	border: 1px solid var(--anatomy-border-soft);
+	border-radius: var(--anatomy-radius-xs);
+	padding: 0.1em 0.35em;
+}
+
+.markdown-preview-view pre {
+	background: var(--anatomy-code-bg);
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-md);
+	padding: 16px;
+	overflow-x: auto;
+}
+
+.markdown-preview-view pre code {
+	border: 0;
+	padding: 0;
+	background: transparent;
+	color: var(--anatomy-text);
+}
+
+.cm-s-obsidian .HyperMD-codeblock {
+	background: var(--anatomy-code-bg);
+}
+
+.cm-s-obsidian .HyperMD-codeblock-bg {
+	background: var(--anatomy-code-bg);
+}
+
+.cm-s-obsidian .HyperMD-codeblock-begin-bg {
+	border-top-left-radius: var(--anatomy-radius-md);
+	border-top-right-radius: var(--anatomy-radius-md);
+}
+
+.cm-s-obsidian .HyperMD-codeblock-end-bg {
+	border-bottom-left-radius: var(--anatomy-radius-md);
+	border-bottom-right-radius: var(--anatomy-radius-md);
+}
+
+
+/* ============================================================================
+19. HORIZONTAL RULE
+============================================================================ */
+
+.markdown-preview-view hr {
+	border: 0;
+	border-top: 1px solid var(--anatomy-border);
+	margin: 2em 0;
+}
+
+
+/* ============================================================================
+20. EMBEDS
+============================================================================ */
+
+.markdown-embed {
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-md);
+	background: var(--anatomy-surface);
+	padding: 12px 16px;
+}
+
+.markdown-embed-title {
+	color: var(--anatomy-muted);
+	font-size: 0.85em;
+}
+
+
+/* ============================================================================
+21. PROPERTIES
+============================================================================ */
+
+.metadata-container {
+	background: var(--anatomy-surface);
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-md);
+}
+
+.metadata-property {
+	border-bottom: 1px solid var(--anatomy-border-soft);
+}
+
+.metadata-property:last-child {
+	border-bottom: 0;
+}
+
+.metadata-property-key {
+	color: var(--anatomy-muted);
+}
+
+.metadata-property-value {
+	color: var(--anatomy-text);
+}
+
+.metadata-property:hover {
+	background: var(--anatomy-accent-faint);
+}
+
+.metadata-add-button {
+	color: var(--anatomy-muted);
+}
+
+.metadata-add-button:hover {
+	color: var(--anatomy-accent);
+}
+
+
+/* ============================================================================
+22. YAML FRONTMATTER
+============================================================================ */
+
+.frontmatter-container {
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-md);
+	background: var(--anatomy-surface);
+}
+
+.cm-hmd-frontmatter {
+	color: var(--anatomy-muted);
+}
+
+.cm-hmd-frontmatter.cm-meta {
+	color: var(--anatomy-accent);
+}
+
+
+/* ============================================================================
+23. SEARCH
+============================================================================ */
+
+.search-input-container {
+	background: var(--anatomy-surface);
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-md);
+}
+
+.search-input-container:focus-within {
+	border-color: var(--anatomy-accent);
+	box-shadow: 0 0 0 2px var(--anatomy-accent-faint);
+}
+
+.search-result-container {
+	background: var(--anatomy-surface);
+}
+
+.search-result-file-title {
+	color: var(--anatomy-text);
+	font-weight: 650;
+}
+
+.search-result-file-matched-text {
+	color: var(--anatomy-text-soft);
+}
+
+.search-result-file-match {
+	border-left: 2px solid var(--anatomy-accent);
+	background: var(--anatomy-accent-faint);
+}
+
+
+/* ============================================================================
+24. BACKLINKS
+============================================================================ */
+
+.backlink-pane {
+	background: var(--anatomy-surface);
+}
+
+.search-result {
+	border-bottom: 1px solid var(--anatomy-border-soft);
+}
+
+.tree-item-self:hover {
+	background: var(--anatomy-accent-faint);
+}
+
+.tree-item-self.is-active {
+	background: var(--anatomy-accent-soft);
+	color: var(--anatomy-accent);
+}
+
+
+/* ============================================================================
+25. OUTLINE
+============================================================================ */
+
+.outline {
+	color: var(--anatomy-muted);
+}
+
+.outline .tree-item-self {
+	border-radius: var(--anatomy-radius-sm);
+}
+
+.outline .tree-item-self:hover {
+	color: var(--anatomy-text);
+	background: var(--anatomy-accent-faint);
+}
+
+.outline .tree-item-self.is-active {
+	color: var(--anatomy-accent);
+	background: var(--anatomy-accent-soft);
+}
+
+
+/* ============================================================================
+26. FILE EXPLORER
+============================================================================ */
+
+.nav-folder.mod-root > .nav-folder-title {
+	color: var(--anatomy-text);
+}
+
+.nav-file-title.is-being-renamed,
+.nav-folder-title.is-being-renamed {
+	background: var(--anatomy-surface);
+	border: 1px solid var(--anatomy-accent);
+}
+
+.nav-file-title-content {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+/* ============================================================================
+27. MODALS
+============================================================================ */
+
+.modal-container {
+	background: rgba(0, 0, 0, 0.30);
+}
+
+.modal {
+	background: var(--anatomy-surface);
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-lg);
+	box-shadow: 0 20px 50px var(--anatomy-shadow);
+}
+
+.modal-title {
+	color: var(--anatomy-text);
+}
+
+.modal-close-button {
+	color: var(--anatomy-muted);
+}
+
+.modal-close-button:hover {
+	color: var(--anatomy-text);
+	background: var(--anatomy-accent-soft);
+}
+
+
+/* ============================================================================
+28. BUTTONS
+============================================================================ */
+
+button.mod-cta {
+	background: var(--anatomy-accent);
+	color: #ffffff;
+	border: 1px solid var(--anatomy-accent);
+	border-radius: var(--anatomy-radius-sm);
+}
+
+button.mod-cta:hover {
+	background: var(--anatomy-accent-hover);
+	border-color: var(--anatomy-accent-hover);
+}
+
+button {
+	border-radius: var(--anatomy-radius-sm);
+}
+
+button:hover {
+	background: var(--anatomy-accent-soft);
+}
+
+
+/* ============================================================================
+29. INPUTS
+============================================================================ */
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+textarea {
+	background: var(--anatomy-surface);
+	color: var(--anatomy-text);
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-sm);
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+	border-color: var(--anatomy-accent);
+	box-shadow: 0 0 0 2px var(--anatomy-accent-faint);
+	outline: none;
+}
+
+
+/* ============================================================================
+30. DROPDOWNS
+============================================================================ */
+
+.dropdown,
+.menu {
+	background: var(--anatomy-surface);
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-md);
+	box-shadow: 0 12px 30px var(--anatomy-shadow);
+}
+
+.menu-item {
+	color: var(--anatomy-text-soft);
+	border-radius: var(--anatomy-radius-xs);
+}
+
+.menu-item:hover {
+	background: var(--anatomy-accent-soft);
+	color: var(--anatomy-text);
+}
+
+
+/* ============================================================================
+31. TOOLTIP
+============================================================================ */
+
+.tooltip {
+	background: var(--anatomy-raised);
+	color: var(--anatomy-text);
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-sm);
+	box-shadow: 0 8px 20px var(--anatomy-shadow);
+}
+
+
+/* ============================================================================
+32. GRAPH VIEW
+============================================================================ */
+
+.graph-view {
+	background: var(--anatomy-bg);
+}
+
+.graph-controls {
+	background: var(--anatomy-surface);
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-md);
+}
+
+.graph-controls input,
+.graph-controls select {
+	background: var(--anatomy-editor);
+	border-color: var(--anatomy-border);
+	color: var(--anatomy-text);
+}
+
+
+/* ============================================================================
+33. CANVAS
+============================================================================ */
+
+.canvas-wrapper {
+	background: var(--anatomy-bg);
+}
+
+.canvas-node {
+	background: var(--anatomy-surface);
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-md);
+	box-shadow: 0 8px 20px var(--anatomy-shadow);
+}
+
+.canvas-node.is-focused {
+	border-color: var(--anatomy-accent);
+	box-shadow: 0 0 0 2px var(--anatomy-accent-faint);
+}
+
+.canvas-node-content {
+	color: var(--anatomy-text);
+}
+
+
+/* ============================================================================
+34. FILE MENU / COMMAND PALETTE
+============================================================================ */
+
+.prompt {
+	background: var(--anatomy-surface);
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-lg);
+	box-shadow: 0 20px 50px var(--anatomy-shadow);
+}
+
+.prompt-input {
+	background: var(--anatomy-editor);
+	border-bottom: 1px solid var(--anatomy-border);
+	color: var(--anatomy-text);
+}
+
+.suggestion-item {
+	color: var(--anatomy-text-soft);
+	border-radius: var(--anatomy-radius-sm);
+}
+
+.suggestion-item.is-selected {
+	background: var(--anatomy-accent-soft);
+	color: var(--anatomy-text);
+}
+
+.suggestion-highlight {
+	color: var(--anatomy-accent);
+}
+
+
+/* ============================================================================
+35. SETTINGS
+============================================================================ */
+
+.vertical-tab-nav-item {
+	color: var(--anatomy-muted);
+	border-radius: var(--anatomy-radius-sm);
+}
+
+.vertical-tab-nav-item:hover {
+	color: var(--anatomy-text);
+	background: var(--anatomy-accent-faint);
+}
+
+.vertical-tab-nav-item.is-active {
+	color: var(--anatomy-accent);
+	background: var(--anatomy-accent-soft);
+}
+
+.setting-item {
+	border-bottom: 1px solid var(--anatomy-border-soft);
+}
+
+.setting-item-name {
+	color: var(--anatomy-text);
+}
+
+.setting-item-description {
+	color: var(--anatomy-muted);
+}
+
+
+/* ============================================================================
+36. SLIDER
+============================================================================ */
+
+input[type="range"] {
+	accent-color: var(--anatomy-accent);
+}
+
+
+/* ============================================================================
+37. CHECKBOX / TOGGLE
+============================================================================ */
+
+.checkbox-container.is-enabled {
+	background: var(--anatomy-accent);
+}
+
+.checkbox-container {
+	border-color: var(--anatomy-border);
+}
+
+
+/* ============================================================================
+38. SELECTION / FOCUS
+============================================================================ */
+
+.cm-editor .cm-selectionBackground,
+.cm-editor .cm-content ::selection {
+	background: var(--anatomy-selection);
+}
+
+.cm-focused .cm-cursor {
+	border-left-color: var(--anatomy-accent);
+}
+
+.cm-editor .cm-matchingBracket {
+	background: var(--anatomy-accent-soft);
+	color: var(--anatomy-accent);
+}
+
+:focus-visible {
+	outline: 2px solid var(--anatomy-accent);
+	outline-offset: 2px;
+}
+
+
+/* ============================================================================
+39. SPELLCHECK / ERRORS
+============================================================================ */
+
+/* Error underline */
+.cm-editor .cm-lintRange-error {
+	border-bottom: 1px solid var(--anatomy-danger);
+}
+
+/* Warning underline */
+.cm-editor .cm-lintRange-warning {
+	border-bottom: 1px solid var(--anatomy-warning);
+}
+
+.mod-error {
+	color: var(--anatomy-danger);
+}
+
+.mod-warning {
+	color: var(--anatomy-warning);
+}
+
+/* ============================================================================
+40. NOTICES
+============================================================================ */
+
+.notice {
+	background: var(--anatomy-surface);
+	color: var(--anatomy-text);
+	border: 1px solid var(--anatomy-border);
+	border-left: 3px solid var(--anatomy-accent);
+	border-radius: var(--anatomy-radius-md);
+	box-shadow: 0 10px 30px var(--anatomy-shadow);
+}
+
+
+/* ============================================================================
+41. FILE MENU
+============================================================================ */
+
+.file-tree-item {
+	color: var(--anatomy-text-soft);
+}
+
+.file-tree-item:hover {
+	background: var(--anatomy-accent-faint);
+}
+
+
+/* ============================================================================
+42. TAB HEADER
+============================================================================ */
+
+.workspace-tab-header.is-active .workspace-tab-header-inner {
+	color: var(--anatomy-text);
+}
+
+.workspace-tab-header.is-active .workspace-tab-header-inner-close-button {
+	color: var(--anatomy-muted);
+}
+
+.workspace-tab-header.is-active .workspace-tab-header-inner-close-button:hover {
+	color: var(--anatomy-text);
+	background: var(--anatomy-accent-soft);
+}
+
+
+/* ============================================================================
+43. DIVIDERS
+============================================================================ */
+
+.workspace-leaf-resize-handle {
+	background: var(--anatomy-border);
+}
+
+.workspace-leaf-resize-handle:hover {
+	background: var(--anatomy-accent);
+}
+
+
+/* ============================================================================
+44. SCROLLBARS
+============================================================================ */
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--anatomy-border);
+	border-radius: 999px;
+	border: 3px solid transparent;
+	background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--anatomy-muted);
+	border: 3px solid transparent;
+	background-clip: padding-box;
+}
+
+
+/* ============================================================================
+45. IMAGES
+============================================================================ */
+
+.markdown-preview-view img {
+	border-radius: var(--anatomy-radius-md);
+}
+
+.markdown-preview-view img:hover {
+	box-shadow: 0 8px 25px var(--anatomy-shadow);
+}
+
+
+/* ============================================================================
+46. MEDIA
+============================================================================ */
+
+.markdown-preview-view video,
+.markdown-preview-view audio {
+	max-width: 100%;
+	border-radius: var(--anatomy-radius-md);
+}
+
+
+/* ============================================================================
+47. FOOTNOTES
+============================================================================ */
+
+.footnotes {
+	border-top: 1px solid var(--anatomy-border);
+	margin-top: 3em;
+	padding-top: 1.5em;
+	color: var(--anatomy-muted);
+}
+
+
+/* ============================================================================
+48. COMMENTS
+============================================================================ */
+
+.cm-comment {
+	color: var(--anatomy-faint);
+}
+
+
+/* ============================================================================
+49. CODE SYNTAX
+============================================================================ */
+
+.cm-s-obsidian .cm-keyword {
+	color: #79b7d3;
+}
+
+.cm-s-obsidian .cm-string {
+	color: #8fc7a4;
+}
+
+.cm-s-obsidian .cm-number {
+	color: #c7a5d8;
+}
+
+.cm-s-obsidian .cm-variable {
+	color: var(--anatomy-text);
+}
+
+.cm-s-obsidian .cm-property {
+	color: #82b9b1;
+}
+
+.cm-s-obsidian .cm-operator {
+	color: var(--anatomy-muted);
+}
+
+
+/* ============================================================================
+50. ANATOMICAL EMPHASIS
+============================================================================ */
+
+.anatomy-observation {
+	color: var(--anatomy-info);
+}
+
+.anatomy-structure {
+	color: var(--anatomy-accent);
+}
+
+.anatomy-finding {
+	color: var(--anatomy-warning);
+}
+
+.anatomy-reference {
+	color: var(--anatomy-muted);
+}
+
+.anatomy-conclusion {
+	color: var(--anatomy-success);
+}
+
+
+/* ============================================================================
+51. PRINT
+============================================================================ */
+
+@media print {
+	.workspace-ribbon,
+	.workspace-tab-header-container,
+	.status-bar,
+	.titlebar,
+	.side-dock-ribbon,
+	.mod-left-split,
+	.mod-right-split {
+		display: none;
+	}
+
+	.markdown-preview-view {
+		background: white;
+		color: black;
+	}
+
+	.markdown-preview-view .markdown-preview-section {
+		max-width: none;
+	}
+
+	a {
+		color: black;
+	}
+}
+
+
+/* ============================================================================
+52. MOBILE
+============================================================================ */
+
+.is-mobile .markdown-preview-view {
+	padding: 24px 18px 60px;
+}
+
+.is-mobile .markdown-source-view.mod-cm6 .cm-content {
+	padding: 24px 18px 60px;
+}
+
+.is-mobile .workspace-tab-header-container {
+	border-bottom: 1px solid var(--anatomy-border);
+}
+
+.is-mobile .nav-file-title,
+.is-mobile .nav-folder-title {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.is-mobile .markdown-preview-view table {
+	display: block;
+	overflow-x: auto;
+}
+
+.is-mobile .metadata-container {
+	border-radius: var(--anatomy-radius-sm);
+}
+
+
+/* ============================================================================
+53. SMALL SCREEN TYPOGRAPHY
+============================================================================ */
+
+@media screen and (max-width: 700px) {
+	.markdown-preview-view {
+		font-size: 15.5px;
+	}
+
+	.markdown-preview-view h1 {
+		font-size: 1.7em;
+	}
+
+	.markdown-preview-view h2 {
+		font-size: 1.4em;
+	}
+
+	.markdown-preview-view h3 {
+		font-size: 1.2em;
+	}
+}
+
+
+/* ============================================================================
+54. REDUCED MOTION
+============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms;
+		animation-iteration-count: 1;
+		transition-duration: 0.01ms;
+		scroll-behavior: auto;
+	}
+}
+
+
+/* ============================================================================
+55. ACCESSIBILITY
+============================================================================ */
+
+@media (prefers-contrast: more) {
+	.theme-dark {
+		--anatomy-border: #526771;
+		--anatomy-muted: #b9c8cd;
+	}
+
+	.theme-light {
+		--anatomy-border: #8fa09c;
+		--anatomy-muted: #4b5c62;
+	}
+
+	.markdown-preview-view blockquote,
+	.callout {
+		border-left-width: 4px;
+	}
+}
+
+
+/* ============================================================================
+56. FINAL THEME SIGNATURE
+============================================================================ */
+
+/*
+Anatomy Nocturne
+
+Explore knowledge.
+Understand structure.
+
+One theme.
+Two modes.
+No subthemes.
+*/
+
+
+/* ============================================================================
+57. CLEAN DROPDOWN / SELECT CONTROLS
+============================================================================ */
+
+.dropdown,
+select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+
+	background-color: var(--anatomy-surface);
+	color: var(--anatomy-text);
+
+	border: 1px solid var(--anatomy-border);
+	border-radius: var(--anatomy-radius-sm);
+
+	padding: 7px 34px 7px 12px;
+	min-height: 34px;
+
+	box-shadow: none;
+	outline: none;
+
+	cursor: pointer;
+
+	background-image:
+		linear-gradient(
+			45deg,
+			transparent 50%,
+			var(--anatomy-muted) 50%
+		),
+		linear-gradient(
+			135deg,
+			var(--anatomy-muted) 50%,
+			transparent 50%
+		);
+
+	background-position:
+		calc(100% - 16px) 14px,
+		calc(100% - 11px) 14px;
+
+	background-size:
+		5px 5px,
+		5px 5px;
+
+	background-repeat: no-repeat;
+}
+
+.dropdown:hover,
+select:hover {
+	border-color: var(--anatomy-accent);
+	background-color: var(--anatomy-accent-faint);
+}
+
+.dropdown:focus,
+.dropdown:focus-visible,
+select:focus,
+select:focus-visible {
+	border-color: var(--anatomy-accent);
+	box-shadow: 0 0 0 2px var(--anatomy-accent-faint);
+	outline: none;
+}
+
+.dropdown:active,
+select:active {
+	border-color: var(--anatomy-accent);
+}
+
+.dropdown option,
+select option {
+	background: var(--anatomy-surface);
+	color: var(--anatomy-text);
+}
+
+.theme-dark .dropdown,
+.theme-dark select {
+	background-color: var(--anatomy-surface);
+	color: var(--anatomy-text);
+}
+
+.theme-light .dropdown,
+.theme-light select {
+	background-color: var(--anatomy-surface);
+	color: var(--anatomy-text);
+}
+
+select,
+.dropdown {
+	font-family: var(--font-interface);
+	font-size: var(--font-ui-small);
+	font-weight: 500;
+}
+
+
+/* ============================================================================
+END OF ANATOMY NOCTURNE
+============================================================================ */

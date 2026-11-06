@@ -1,0 +1,55 @@
+/* --- EFECTO NEÓN Y PULSO ELÉCTRICO PARA NODOS --- */
+body:not(.is-mobile) .canvas-node {
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.85) !important;
+    border: 2px solid rgba(56, 189, 248, 0.4);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+    animation: pulsoCerebro 6s ease-in-out infinite;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animación de cambio de color/brillo constante (Estimulación neuronal) */
+@keyframes pulsoCerebro {
+    0%, 100% {
+        border-color: rgba(56, 189, 248, 0.5); /* Cian */
+        box-shadow: 0 0 10px rgba(56, 189, 248, 0.3), inset 0 0 8px rgba(56, 189, 248, 0.1);
+    }
+    33% {
+        border-color: rgba(168, 85, 247, 0.6); /* Púrpura */
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), inset 0 0 12px rgba(168, 85, 247, 0.2);
+    }
+    66% {
+        border-color: rgba(236, 72, 153, 0.6); /* Rosa neón */
+        box-shadow: 0 0 20px rgba(236, 72, 153, 0.4), inset 0 0 12px rgba(236, 72, 153, 0.2);
+    }
+}
+
+/* Efecto al pasar el cursor (Hover interactivo) */
+.canvas-node:hover {
+    transform: scale(1.03);
+    border-color: rgba(34, 211, 238, 0.9);
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.8);
+}
+
+/* --- ANIMACIÓN DE LÍNEAS / SINAPSIS --- */
+.canvas-path path {
+    stroke: #38bdf8 !important;
+    stroke-width: 3px;
+    stroke-dasharray: 8 8;
+    animation: flujoSinapsis 2.5s linear infinite;
+}
+
+@keyframes flujoSinapsis {
+    from {
+        stroke-dashoffset: 40;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Cambio de color dinámico en las flechas al conectar */
+.canvas-path:hover path {
+    stroke: #f43f5e !important;
+    stroke-width: 5px;
+}

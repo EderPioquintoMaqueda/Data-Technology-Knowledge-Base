@@ -1,0 +1,294 @@
+/*
+ * Starfield — An Obsidian Theme
+ * by Nick Milo
+ * Version 1.0.3
+ *
+ * Deep space, a nebula glow in the corners, pink for the chrome,
+ * and headings that catch a little starlight at their edges.
+ * Made alongside Maps of the Ideaverse (its Starfield and Starship maps).
+ *
+ * License: MIT
+ */
+
+/*===============================================================
+ * PALETTE
+ * Starfield is a night sky, so it is dark in both modes.
+ *===============================================================*/
+
+.theme-dark,
+.theme-light {
+  color-scheme: dark;
+
+  /* space */
+  --sf-void: #06070f;
+  --sf-deep: #0b0a18;
+  --sf-panel: #0e0c1d;
+  --sf-line: #231f3d;
+  --sf-line-soft: #18152b;
+
+  /* starlight */
+  --sf-ink: #e4e2f5;
+  --sf-muted: #a59fc4;
+  --sf-faint: #6d6890;
+
+  /* the nebula */
+  --sf-pink: #ff8fc0;
+  --sf-pink-soft: rgba(255, 143, 192, .14);
+  --sf-blush: #ffd9ea;
+
+  /* how notes relate (also the link colors Maps of the Ideaverse can apply) */
+  --sf-gold: #ffcf5a;    /* up */
+  --sf-purple: #c9a2ff;  /* related */
+  --sf-blue: #6fbcff;    /* above */
+  --sf-green: #6fe08f;   /* below */
+  --sf-coral: #ff9e7d;   /* other properties and collections */
+  --sf-ghost: #eceef5;   /* placeholder links */
+
+  /* Obsidian's variables */
+  --background-primary: var(--sf-void);
+  --background-primary-alt: var(--sf-deep);
+  --background-secondary: var(--sf-deep);
+  --background-secondary-alt: var(--sf-panel);
+  --background-modifier-border: var(--sf-line);
+  --background-modifier-border-hover: #332c55;
+  --background-modifier-border-focus: var(--sf-pink);
+  --background-modifier-hover: rgba(228, 226, 245, .06);
+  --background-modifier-active-hover: var(--sf-pink-soft);
+  --background-modifier-form-field: var(--sf-panel);
+  --background-modifier-cover: rgba(3, 3, 10, .7);
+  --titlebar-background: var(--sf-void);
+  --titlebar-background-focused: var(--sf-void);
+  --tab-container-background: var(--sf-void);
+  --ribbon-background: var(--sf-void);
+  --ribbon-background-collapsed: var(--sf-void);
+
+  --text-normal: var(--sf-ink);
+  --text-muted: var(--sf-muted);
+  --text-faint: var(--sf-faint);
+  --text-on-accent: var(--sf-void);
+  --text-accent: var(--sf-pink);
+  --text-accent-hover: var(--sf-blush);
+  --text-selection: rgba(255, 143, 192, .28);
+  --text-highlight-bg: rgba(255, 207, 90, .22);
+
+  --accent-h: 333;
+  --accent-s: 100%;
+  --accent-l: 78%;
+  --interactive-normal: var(--sf-panel);
+  --interactive-hover: #17142b;
+  --interactive-accent: var(--sf-pink);
+  --interactive-accent-hover: var(--sf-blush);
+  --caret-color: var(--sf-pink);
+  --icon-color: var(--sf-muted);
+  --icon-color-hover: var(--sf-ink);
+  --icon-color-focused: var(--sf-pink);
+
+  --link-color: #f0e6ff;
+  --link-color-hover: #ffffff;
+  --link-decoration-color: rgba(255, 143, 192, .55);
+  --link-external-color: var(--sf-pink);
+  --link-external-color-hover: var(--sf-blush);
+  --link-unresolved-color: var(--sf-muted);
+  --link-unresolved-opacity: .75;
+
+  --h1-color: #fbf6ee;
+  --h2-color: #f6f3fd;
+  --h3-color: #f3f8fd;
+  --h4-color: #f2fbf6;
+  --h5-color: #fbf3f7;
+  --h6-color: #8fc3ff;
+  --inline-title-color: #fbf6ee;
+  --bold-color: #ffffff;
+  --italic-color: var(--sf-blush);
+
+  --blockquote-border-color: var(--sf-pink);
+  --blockquote-color: var(--sf-blush);
+  --blockquote-background-color: rgba(255, 122, 182, .06);
+  --hr-color: var(--sf-line);
+  --code-background: var(--sf-panel);
+  --code-normal: #e0d6ff;
+  --tag-color: #ffa8cf;
+  --tag-background: rgba(255, 122, 182, .14);
+  --tag-color-hover: #ffc4de;
+  --tag-background-hover: rgba(255, 122, 182, .22);
+  --checkbox-color: var(--sf-pink);
+  --checkbox-border-color: var(--sf-muted);
+  --list-marker-color: var(--sf-faint);
+  --table-border-color: var(--sf-line);
+  --table-header-background: var(--sf-panel);
+  --scrollbar-thumb-bg: rgba(165, 159, 196, .22);
+  --scrollbar-active-thumb-bg: rgba(165, 159, 196, .4);
+
+  --pill-color: var(--sf-muted);
+  --pill-border-color: var(--sf-line);
+  --metadata-label-text-color: var(--sf-muted);
+  --metadata-label-font-size: 10px;   /* the small-caps names stay small at any text size */
+  --metadata-input-text-color: var(--sf-ink);
+
+  /* the graph view as a star field */
+  --graph-node: #e8ecff;
+  --graph-node-unresolved: var(--sf-faint);
+  --graph-node-focused: var(--sf-pink);
+  --graph-node-tag: var(--sf-gold);
+  --graph-node-attachment: var(--sf-blue);
+  --graph-line: rgba(185, 166, 255, .16);
+  --graph-text: var(--sf-muted);
+}
+
+/*===============================================================
+ * THE SKY
+ * a nebula glow in two corners and a few stars behind every note
+ *===============================================================*/
+
+.workspace-leaf-content[data-type="markdown"] .view-content,
+.workspace-leaf-content[data-type="graph"] .view-content,
+.workspace-leaf-content[data-type="localgraph"] .view-content {
+  background-color: var(--sf-void);
+  background-image:
+    radial-gradient(620px 420px at 108% -6%, rgba(255, 122, 182, .16), transparent 70%),
+    radial-gradient(520px 400px at -10% 104%, rgba(255, 170, 80, .10), transparent 70%),
+    radial-gradient(1px 1px at 9% 22%, rgba(255, 240, 220, .7), transparent),
+    radial-gradient(1px 1px at 88% 56%, rgba(255, 240, 220, .5), transparent),
+    radial-gradient(1.5px 1.5px at 38% 76%, rgba(185, 166, 255, .7), transparent),
+    radial-gradient(1px 1px at 93% 86%, rgba(255, 240, 220, .45), transparent),
+    radial-gradient(1px 1px at 64% 12%, rgba(143, 195, 255, .6), transparent);
+  background-attachment: local, local, local, local, local, local, local;
+}
+
+.markdown-source-view,
+.markdown-reading-view,
+.markdown-preview-view {
+  --background-primary: transparent;
+}
+
+.workspace-split.mod-left-split .workspace-leaf-content,
+.workspace-split.mod-right-split .workspace-leaf-content {
+  background-color: var(--sf-deep);
+}
+
+.workspace-tab-header.is-active {
+  box-shadow: inset 0 -2px 0 var(--sf-pink);
+}
+
+/*===============================================================
+ * HEADINGS
+ * near-white, with color caught at the top left of the first letter
+ * and, a third softer, at the bottom right of the last:
+ * H1 and the title gold, H2 purple, H3 blue, H4 green, H5 pink.
+ * H6 is a small-caps label, like an instrument on a starship.
+ *===============================================================*/
+
+.inline-title,
+.markdown-rendered h1,
+.cm-header-1 { --sf-hg: var(--sf-gold); --sf-hb: #fbf6ee; }
+.markdown-rendered h2,
+.cm-header-2 { --sf-hg: var(--sf-purple); --sf-hb: #f6f3fd; }
+.markdown-rendered h3,
+.cm-header-3 { --sf-hg: var(--sf-blue); --sf-hb: #f3f8fd; }
+.markdown-rendered h4,
+.cm-header-4 { --sf-hg: var(--sf-green); --sf-hb: #f2fbf6; }
+.markdown-rendered h5,
+.cm-header-5 { --sf-hg: var(--sf-pink); --sf-hb: #fbf3f7; }
+
+.inline-title,
+.markdown-rendered :is(h1, h2, h3, h4, h5),
+.cm-header-1, .cm-header-2, .cm-header-3, .cm-header-4, .cm-header-5 {
+  color: var(--sf-hb);
+  -webkit-text-fill-color: transparent;
+  background-image:
+    radial-gradient(2.3em 1.25em at 0 0, var(--sf-hg), transparent 80%),
+    radial-gradient(2.3em 1.25em at 100% 78%, color-mix(in srgb, var(--sf-hg) 67%, transparent), transparent 80%),
+    linear-gradient(var(--sf-hb), var(--sf-hb));
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 9px color-mix(in srgb, var(--sf-hg) 24%, transparent));
+}
+
+.inline-title,
+.markdown-rendered :is(h1, h2, h3, h4, h5) {
+  width: fit-content;
+  max-width: 100%;
+}
+
+.markdown-rendered :is(h1, h2, h3, h4, h5) :is(a, span, em, strong, code) {
+  -webkit-text-fill-color: currentColor;
+}
+
+.markdown-rendered h6,
+.HyperMD-header-6,
+.cm-header-6 {
+  font-family: var(--font-monospace);
+  font-size: .8em;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/*===============================================================
+ * PROPERTIES
+ * a dark panel, small mono labels
+ *===============================================================*/
+
+.metadata-container {
+  background: rgba(20, 16, 38, .72);
+  border: 1px solid rgba(185, 166, 255, .18);
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+.metadata-property-key,
+.metadata-property-key-input,
+input.metadata-property-key-input {
+  font-family: var(--font-monospace);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--sf-muted);
+}
+
+.multi-select-pill {
+  background: rgba(255, 122, 182, .12);
+  color: var(--sf-blush);
+}
+
+/*===============================================================
+ * QUOTES, CALLOUTS, CODE
+ *===============================================================*/
+
+.markdown-rendered blockquote,
+.HyperMD-quote {
+  background: var(--blockquote-background-color);
+}
+
+.callout {
+  border-radius: 10px;
+  background-color: rgba(var(--callout-color), .08);
+}
+
+.markdown-rendered code,
+.cm-inline-code {
+  border-radius: 5px;
+}
+
+/*===============================================================
+ * LINKS BY HOW NOTES RELATE
+ * Maps of the Ideaverse marks each link with data-ivk; the theme colors it:
+ * up gold, related purple, above blue, below green, other properties coral.
+ * A placeholder (no note yet, or the note itself) is a dashed outline, no fill.
+ *===============================================================*/
+
+[data-ivk] { text-decoration-color: currentColor; }
+[data-ivk="upp"], [data-ivk="upp"] * { color: var(--sf-gold); }
+[data-ivk="rel"], [data-ivk="rel"] * { color: var(--sf-purple); }
+[data-ivk="up"], [data-ivk="up"] * { color: var(--sf-blue); }
+[data-ivk="down"], [data-ivk="down"] * { color: var(--sf-green); }
+[data-ivk="prop"], [data-ivk="prop"] * { color: var(--sf-coral); }
+[data-ivk="none"] {
+  --link-unresolved-opacity: 1;
+  color: var(--sf-ghost);
+  opacity: 1;
+  text-decoration: none;
+  border: 1px dashed rgba(236, 238, 245, .45);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+[data-ivk="none"] * { color: var(--sf-ghost); text-decoration: none; }
