@@ -1,46 +1,52 @@
-# 🕸️ Knowledge Map | Mapa de Conocimiento
-
-El mapa de conocimiento visualiza cómo fluye la información a través de la bóveda. Nada existe de forma aislada.
-
-The knowledge map visualizes how information flows through the vault. Nothing exists in isolation.
-
+---
+title: Knowledge Map
+type: moc
+tags: [knowledge-map, connections]
 ---
 
-## 🔄 Flujo de Dependencias | Dependency Flow
+# 🕸️ Knowledge Map
 
-**1. La Base (The Foundation)**
-`Matemáticas` $\rightarrow$ `Programación` $\rightarrow$ `Lógica de Datos`
-- Sin álgebra no hay ML.
-- Sin Python no hay análisis eficiente.
-- Sin lógica de datos no hay SQL.
+Nothing exists in isolation. This map shows how the areas depend on each other.
 
-**2. El Proceso (The Process)**
-`Bases de Datos` $\rightarrow$ `Análisis de Datos` $\rightarrow$ `Visualización`
-- Los datos se guardan $\rightarrow$ se limpian $\rightarrow$ se comunican.
+```
+                    ┌──────────────┐
+                    │ Mathematics  │
+                    └──────┬───────┘
+                           ▼
+┌─────────┐   ┌────────────────────┐   ┌──────────────────┐
+│ English │──►│ Python & libraries │◄─►│       SQL        │
+└────┬────┘   └─────────┬──────────┘   └────────┬─────────┘
+     │                  ▼                       ▼
+     │        ┌──────────────────┐   ┌──────────────────────────┐
+     │        │  Data analysis   │◄──│ Databases & data eng.    │
+     │        └────────┬─────────┘   └────────────┬─────────────┘
+     │                 ▼                          ▼
+     │        ┌──────────────────┐   ┌──────────────────────────┐
+     └───────►│ Visualization/BI │   │ Machine learning → AI    │
+              └──────────────────┘   └──────────────────────────┘
+        Tools (Git, Linux, Docker, dbt, Airflow) support everything
+```
 
-**3. La Evolución (The Evolution)**
-`Análisis de Datos` $\rightarrow$ `Machine Learning` $\rightarrow$ `IA Generativa`
-- De describir el pasado (Análisis) a predecir el futuro (ML) y crear contenido (IA).
+## One concept, many areas — examples
+### Missing data (NULL)
+- Statistics: imputation, MCAR/MAR/MNAR → [[pandas_data_cleaning_missing]]
+- Python: `None`, `np.nan`, `pd.NA` → [[numpy_boolean_masking]]
+- SQL: `IS NULL`, `COALESCE`, three-valued logic → [[SQL-I02 CASE, NULLs, Strings and Dates]]
+- Modeling: `NOT NULL` constraints → [[03 - Keys and Constraints]]
+- BI: "(Blank)" in Power BI → [[Power BI]]
 
----
+### Joining data
+- SQL joins → [[SQL-B03 JOINs]] · pandas → [[pandas_merging_joining]] · Polars → [[Polars - Beginner to Advanced]] · Spark → [[14 - Spark Joins and Aggregations]] · theory → [[02 - Relationships and Cardinality]]
 
-## 🛠️ Soporte Transversal | Cross-cutting Support
-Estas herramientas no son un "paso", sino que acompañan todo el proceso:
+### Window functions
+- SQL → [[SQL-I03 Window Functions]] · pandas `transform` → [[pandas_groupby_aggregation]] · Polars `.over()` · DAX `CALCULATE` context → [[DAX_Maestro]]
 
-- **Git/GitHub**: Para versionar código en todas las áreas.
-- **Docker**: Para asegurar que el entorno sea reproducible.
-- **Terminal/Linux**: La interfaz profesional de trabajo.
-- **APIs**: El puente para conectar datos y modelos con el mundo.
+### Performance
+- Python → [[PY-A04 Performance, Profiling and Memory]] · NumPy memory → [[numpy_memory_architecture]] · SQL → [[SQL-A01 Query Optimization and Indexes]] · internals → [[04 - Indexes]] · scale → [[02 - Database Scalability]]
 
----
+### Transactions & reliability
+- SQL → [[SQL-A02 Transactions, Isolation and Locking in Practice]] · Python → [[PY-A05 Python and Databases]] · theory → [[05 - Transactions and ACID]] · pipelines → [[Apache Airflow Fundamentals]]
 
-## 💡 Ejemplo de Conexión Conceptual | Conceptual Connection Example
+🏠 [[Home]]
 
-**Concepto: "Datos Faltantes" (Missing Data)**
-- En [[01 - Matemáticas]] $\rightarrow$ Se analiza desde la Estadística (Imputación).
-- En [[02 - Programación]] $\rightarrow$ Se maneja con Pandas (`dropna`, `fillna`).
-- En [[03 - Datos y Bases de Datos]] $\rightarrow$ Se identifica como `NULL` en SQL.
-- En [[05 - Visualización y Business Intelligence]] $\rightarrow$ Se visualiza como huecos en el dashboard o "Blanks".
-
----
-#knowledge-map #connections #architecture
+#knowledge-map

@@ -1,0 +1,4 @@
+# Local backups and scratch
+99 - Archive/_backup_*.tar.gz
+99 - Archive/_to_delete/
+.obsidian/workspace.json

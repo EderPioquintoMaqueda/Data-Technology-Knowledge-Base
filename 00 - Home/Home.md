@@ -1,33 +1,47 @@
-# 🏠 Home | Inicio
+---
+title: Home
+aliases: [Inicio, Start Here]
+type: moc
+tags: [home, moc, knowledge-base]
+---
 
-Bienvenido a tu Base de Conocimientos de Datos y Tecnología. Esta bóveda no es solo un repositorio de notas, sino un sistema interconectado diseñado para transformar la formación de un Ingeniero Mecánico en un experto en Datos y Transformación Digital.
+# 🏠 Data & Technology Knowledge Base
 
-Welcome to your Data & Technology Knowledge Base. This vault is not just a repository of notes, but an interconnected system designed to transition a Mechanical Engineer into a Data and Digital Transformation expert.
+> An interconnected system to go from **mechanical engineer → data & digital transformation professional**, learning **English at the same time**. Every technical note is in English and ends with a 🗣️ vocabulary table (IPA + Spanish-style pronunciation + translation).
+
+**Start here →** [[Data & Technology Roadmap]] · [[Learning Dashboard]] · [[English Dashboard]] · [[How to Read Pronunciation]]
 
 ---
 
-## 🗺️ Áreas de Conocimiento | Knowledge Areas
+## 🗺️ Knowledge areas
+| # | Area | Entry point | Status |
+|---|---|---|---|
+| 01 | 📐 Mathematics | [[LA_01_Vectors_Spaces_and_Norms]] · Spanish notes: [[Cálculo y Optimización]] | 🟡 partial |
+| 02 | 🐍 **Python & libraries** | [[00 - Python Roadmap]] · [[Python Libraries Map]] | 🟢 beginner → advanced |
+| 03 | 🐘 **SQL** | [[00 - SQL Roadmap]] · [[SQL Practice Database]] · [[SQL Exercises - 60 Problems with Solutions]] | 🟢 beginner → advanced |
+| 04 | 🗄️ **Databases & data engineering** | [[00 - Databases Hub]] · [[PostgreSQL Practical Guide]] | 🟢 deep |
+| 05 | 🔍 Data analysis | [[Fundamentos del Análisis de Datos]] · [[Análisis Exploratorio de Datos]] · [[Métricas y KPIs]] | 🟡 Spanish |
+| 06 | 📊 Visualization & BI | [[Fundamentos de Visualización]] · [[Power BI]] · [[DAX_Maestro]] | 🟡 Spanish |
+| 07 | 🤖 Machine learning | [[Introducción al Machine Learning]] · [[sklearn_api_design]] | 🟡 partial |
+| 08 | 🧠 AI & LLMs | [[Fundamentos de IA y Deep Learning]] · [[Transformers y LLMs]] · [[Prompt Engineering y RAG]] | 🟡 Spanish |
+| 09 | 🛠️ **Tools & engineering** | [[00 - Tools Roadmap]] | 🟢 core done |
+| 10 | 🧪 Projects | [[Guía de Proyectos]] | 🟡 |
+| 11 | 📚 Resources | [[Guía de Recursos]] | 🟡 |
+| 12 | 🤝 Soft skills | [[Data_Storytelling]] | 🟡 |
+| 🇬🇧 | **English Learning System** | [[English Dashboard]] | 🟢 complete path A1 → C1 |
+| 🚧 | Pending work | [[Completion and Translation Queue]] | — |
 
-| Área | Descripción (ES) | Description (EN) | Enlace |
-| :--- | :--- | :--- | :--- |
-| **01. Matemáticas** | La base teórica para entender algoritmos y datos. | The theoretical foundation for understanding algorithms and data. | [[01 - Matemáticas]] |
-| **02. Programación** | Herramientas para automatizar y procesar información. | Tools to automate and process information. | [[02 - Programación]] |
-| **03. Datos y BD** | Cómo almacenar y recuperar información eficientemente. | How to store and retrieve information efficiently. | [[03 - Datos y Bases de Datos]] |
-| **04. Análisis de Datos** | Transformar datos brutos en insights accionables. | Transforming raw data into actionable insights. | [[04 - Análisis de Datos]] |
-| **05. Visualización & BI** | Comunicar hallazgos mediante historias visuales. | Communicating findings through visual storytelling. | [[05 - Visualización y Business Intelligence]] |
-| **06. Machine Learning** | Modelos predictivos basados en datos. | Predictive models based on data. | [[06 - Machine Learning]] |
-| **07. IA & LLMs** | El estado del arte en inteligencia artificial generativa. | The state-of-the-art in generative artificial intelligence. | [[07 - Inteligencia Artificial y LLMs]] |
-| **08. Ingeniería** | La infraestructura y herramientas del desarrollador. | The infrastructure and tools of the developer. | [[08 - Ingeniería y Herramientas]] |
-| **09. Proyectos** | Aplicación práctica de todo el conocimiento. | Practical application of all knowledge. | [[09 - Proyectos y Casos de Estudio]] |
-| **10. Recursos** | Bibliografía y referencias externas. | Bibliography and external references. | [[10 - Recursos y Referencias]] |
+## 🔁 How each note is built
+1. 🎯 **Learning objectives**
+2. 🟢 Beginner → 🟡 Intermediate → 🔴 Advanced sections with runnable code
+3. 🧪 **Practice** exercises (with solutions)
+4. 🗣️ **Vocabulary | Vocabulario** — English term · IPA · sounds like · Spanish
+5. 💬 Useful sentences — ready-to-use English for work
+6. ⬅️ ➡️ Navigation to previous / next note
 
----
+## 🔗 Quick links
+- 🕸️ [[Knowledge Map]] — how areas connect
+- 📊 [[Learning Dashboard]] — current focus & skills
+- 🗃️ Archive of Spanish originals & backup: `99 - Archive`
 
-## 🚀 Navegación Rápida | Quick Navigation
-
-- 📍 [[Data & Technology Roadmap]] - ¿Por dónde empezar? | Where to start?
-- 📊 [[Learning Dashboard]] - Mi progreso actual | My current progress.
-- 🕸️ [[Knowledge Map]] - Conexiones entre conceptos | Connections between concepts.
-
----
-#estudios #roadmap #knowledge-base
+#home #moc

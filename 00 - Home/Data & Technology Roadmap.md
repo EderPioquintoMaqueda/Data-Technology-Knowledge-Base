@@ -1,47 +1,49 @@
-# 🗺️ Data & Technology Roadmap | Ruta de Aprendizaje
-
-Este documento define el camino estratégico para pasar de los fundamentos a la especialización. El objetivo es conectar la teoría matemática con la implementación técnica.
-
-This document defines the strategic path from fundamentals to specialization. The goal is to connect mathematical theory with technical implementation.
-
+---
+title: Data & Technology Roadmap
+type: moc
+tags: [roadmap, learning-path]
 ---
 
-## 🟢 Fase 1: Fundamentos (The Bedrock)
-*Objetivo: Construir la capacidad de pensar en datos y programar soluciones básicas.*
-*Goal: Build the ability to think in data and program basic solutions.*
+# 🗺️ Data & Technology Roadmap (12 months)
 
-- [ ] **Matemáticas Básicas**: Álgebra Lineal $\rightarrow$ Cálculo $\rightarrow$ Probabilidad.
-- [ ] **Programación Python**: Sintaxis $\rightarrow$ Estructuras de Datos $\rightarrow$ POO.
-- [ ] **Bases de Datos**: Modelo Relacional $\rightarrow$ SQL Fundamental.
-- [ ] **Entornos**: Git/GitHub $\rightarrow$ Terminal $\rightarrow$ VS Code.
+> Study **one tech track + English every day**. Read the tech notes aloud — they are your English reading practice.
 
-## 🟡 Fase 2: Análisis y Procesamiento (The Engine)
-*Objetivo: Manipular datos reales y extraer valor.*
-*Goal: Manipulate real data and extract value.*
+## 🟢 Phase 1 — Foundations (months 1–3)
+**Goal:** write Python scripts, query databases with SQL, use Git. English A2 → B1.
+- [ ] Python beginner: [[PY-B01 Setup, Variables and Data Types]] → [[PY-B06 Files, Modules and Error Handling]]
+- [ ] SQL beginner: [[SQL Practice Database]] → [[SQL-B01 SELECT, WHERE and ORDER BY]] → [[SQL-B04 Creating Tables - DDL, DML and Constraints]]
+- [ ] Databases L1: [[01 - What is a Database System]] → [[04 - OLTP vs OLAP]]
+- [ ] Tools: [[Developer Environment - VS Code, Jupyter and Terminal]] · [[GIT_01_Beginner_Basics_Commit_and_Branch]] · [[LIN_01_Command_Line_Navigation_and_File_Management]]
+- [ ] Libraries: NumPy path → [[numpy_memory_architecture]]
+- [ ] English: Stage 1 of [[English Dashboard]] + [[Numbers in English]]
+- 🏁 **Project 1:** Python script that loads a CSV into SQLite/DuckDB and answers 10 business questions with SQL.
 
-- [ ] **Análisis Exploratorio (EDA)**: Limpieza $\rightarrow$ Calidad $\rightarrow$ Pandas/NumPy.
-- [ ] **SQL Avanzado**: Joins $\rightarrow$ CTEs $\rightarrow$ Window Functions.
-- [ ] **Visualización**: Storytelling $\rightarrow$ Power BI $\rightarrow$ DAX.
-- [ ] **Ingeniería**: Docker $\rightarrow$ APIs $\rightarrow$ Linux.
+## 🟡 Phase 2 — Analysis & processing (months 4–6)
+**Goal:** clean and analyse real data; intermediate SQL; Docker. English B1.
+- [ ] Python intermediate: [[PY-I01 Comprehensions, Iterators and Generators]] → [[PY-I05 Testing, Type Hints and Code Quality]]
+- [ ] pandas path: [[pandas_series_dataframe_internals]] → [[pandas_timeseries]]; then [[Polars - Beginner to Advanced]] · [[DuckDB - SQL Inside Python]]
+- [ ] SQL intermediate: [[SQL-I01 Subqueries and CTEs]] → [[SQL-I04 Set Operations, Views and Data Modeling in Practice]]
+- [ ] Data modeling: [[01 - Entities and Attributes]] → [[06 - Schema Design Principles]]
+- [ ] Tools: [[DOCKER_01_Beginner_Containers_Images_and_Dockerfile]] → [[DOCKER_02_Intermediate_Volumes_Networks_and_Compose]] · [[PostgreSQL Practical Guide]]
+- [ ] Analysis & BI: [[Análisis Exploratorio de Datos]] · [[Power BI]]
+- [ ] English: Stage 2 + [[Data and Programming]] + [[Meetings]]
+- 🏁 **Project 2:** PostgreSQL in Docker + pandas EDA + Power BI dashboard on DataShop.
 
-## 🔴 Fase 3: Inteligencia Avanzada (The Intelligence)
-*Objetivo: Crear sistemas autónomos y predictivos.*
-*Goal: Create autonomous and predictive systems.*
+## 🔴 Phase 3 — Engineering & intelligence (months 7–12)
+**Goal:** production-grade pipelines, advanced SQL, ML. English B2.
+- [ ] Python advanced: [[PY-A01 Decorators, Closures and Context Managers]] → [[PY-A05 Python and Databases]]
+- [ ] SQL advanced: [[SQL-A01 Query Optimization and Indexes]] → [[SQL-A04 Functions, Procedures and Triggers]] + all 60 exercises
+- [ ] Database internals & architecture: [[02 - How a Query is Executed]] → [[07 - Backup and Disaster Recovery]]
+- [ ] Data engineering: [[03 - ETL and ELT]] → [[07 - Lakehouse Architecture]] · [[dbt - Data Build Tool]] · [[Apache Airflow Fundamentals]] · Spark ([[10 - Apache Spark Fundamentals]])
+- [ ] ML: [[Introducción al Machine Learning]] · scikit-learn path · [[Transformers y LLMs]]
+- [ ] English: Stages 3–4 + [[Job Interviews]] + [[Presentations]]
+- 🏁 **Project 3:** API → Pydantic → PostgreSQL → dbt → Airflow → dashboard, in Docker, on GitHub with CI, documented in English.
 
-- [ ] **Machine Learning**: Supervisado $\rightarrow$ No Supervisado $\rightarrow$ Evaluación.
-- [ ] **IA y LLMs**: Transformers $\rightarrow$ Prompt Engineering $\rightarrow$ RAG.
-- [ ] **Despliegue**: Cloud Computing $\rightarrow$ Automatización $\rightarrow$ MLOps.
+## 🔗 Critical paths
+1. **Data engineering:** Python → SQL → Databases → Docker → dbt/Airflow → Spark.
+2. **Analytics / BI:** SQL → pandas → Data analysis → Visualization → Power BI.
+3. **ML / AI:** Mathematics → NumPy/pandas → scikit-learn → Deep learning → LLMs.
 
----
+🏠 [[Home]]
 
-## 🔗 Conexiones Críticas | Critical Connections
-
-Para dominar el área, no estudies aisladamente. Sigue estas rutas:
-To master the area, do not study in isolation. Follow these paths:
-
-1. **ML Path**: [[01 - Matemáticas]] $\rightarrow$ [[02 - Programación]] $\rightarrow$ [[06 - Machine Learning]].
-2. **BI Path**: [[03 - Datos y Bases de Datos]] $\rightarrow$ [[04 - Análisis de Datos]] $\rightarrow$ [[05 - Visualización y Business Intelligence]].
-3. **AI Path**: [[06 - Machine Learning]] $\rightarrow$ [[07 - Inteligencia Artificial y LLMs]].
-
----
-#roadmap #learning-path #data-science
+#roadmap
